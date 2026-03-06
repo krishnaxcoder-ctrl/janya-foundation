@@ -61,6 +61,8 @@
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
-    "supabase"
+    "supabase",
+    "shadcn",
+    "context7"
   ]
 }
