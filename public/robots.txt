@@ -1,0 +1,33 @@
+# Robots.txt for Janya Foundation
+# Website: https://janyafoundation.in
+
+User-agent: *
+Allow: /
+Allow: /galleryimages/
+Allow: /logos/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Disallow admin and API routes
+Disallow: /dashboard
+Disallow: /api/
+
+# Allow Googlebot to crawl everything
+User-agent: Googlebot
+Allow: /
+
+# Allow Google Image bot specifically
+User-agent: Googlebot-Image
+Allow: /galleryimages/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+
+# Sitemap location
+Sitemap: https://janyafoundation.in/sitemap.xml
+
+# Crawl-delay for politeness (optional)
+# Crawl-delay: 1
