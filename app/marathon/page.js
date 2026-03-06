@@ -607,8 +607,7 @@ export default function MarathonRegistration() {
                 <div className="space-y-2 mb-4">
                   {[
                     { label: 'Registration Deadline', value: '5th March, 2:00 PM' },
-                    { label: 'BIB (5KM, 10KM & 21.1KM)', value: '6-7 March, Decathlon Belapur' },
-                    { label: 'BIB (3KM)', value: '6-7 March, Decathlon Belapur' },
+                    { label: 'BIB Collection (All Races)', value: '6 Mar (4-9 PM) & 7 Mar (1-9 PM), Decathlon Belapur' },
                     { label: 'Marathon Day', value: '8th March, 5:00 AM' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-2.5 text-sm">
@@ -1101,7 +1100,7 @@ export default function MarathonRegistration() {
                       <div className="flex items-start gap-2 text-sm">
                         <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 flex-shrink-0" />
                         <p className="text-gray-600">
-                          <span className="font-medium text-gray-800">BIB Collection:</span> 6-7 March at Decathlon Belapur
+                          <span className="font-medium text-gray-800">BIB Collection:</span> 6 Mar (4-9 PM) & 7 Mar (1-9 PM) at Decathlon Belapur
                         </p>
                       </div>
                       <div className="flex items-start gap-2 text-sm">
@@ -1662,8 +1661,8 @@ export default function MarathonRegistration() {
 
                   <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden">
                     {[
-                      { date: '6-7', month: 'Mar', title: 'BIB Collection - 5KM, 10KM & 21.1KM', desc: 'Collect your race BIB and event t-shirt', time: '5:00 PM - 8:00 PM', location: 'Decathlon, Belapur', color: 'bg-gray-800' },
-                      { date: '6-7', month: 'Mar', title: 'BIB Collection - 3KM', desc: 'Collect your race BIB and event t-shirt', time: '5:00 PM - 8:00 PM', location: 'Decathlon, Belapur', color: 'bg-gray-800' },
+                      { date: '6', month: 'Mar', title: 'BIB Collection - All Races', desc: 'Collect your race BIB and event t-shirt', time: '4:00 PM - 9:00 PM', location: 'Decathlon, Belapur', color: 'bg-gray-800' },
+                      { date: '7', month: 'Mar', title: 'BIB Collection - All Races', desc: 'Collect your race BIB and event t-shirt', time: '1:00 PM - 9:00 PM', location: 'Decathlon, Belapur', color: 'bg-gray-800' },
                       { date: '5', month: 'Mar', title: 'Registration Deadline', desc: 'Last date to register for the marathon', time: '2:00 PM', location: 'Closes', color: 'bg-red-500', highlight: true },
                       { date: '8', month: 'Mar', title: 'Marathon Day', desc: 'The main event! 3KM, 5KM, 10KM & 21.1KM', time: '5:00 AM', location: 'BD Somani International School, Sector 27', color: 'bg-pink-500' },
                       { date: '8', month: 'Mar', title: 'Award Ceremony & Celebration', desc: 'Winners announcement, medals & certificates', time: '10:00 AM', location: 'Main Stage', color: 'bg-gray-800' },
@@ -2371,7 +2370,7 @@ export default function MarathonRegistration() {
             </div>
             <div className="flex items-center gap-4 text-xs">
               <span className="text-gray-500">BIB Collection:</span>
-              <span className="text-white font-medium">6-7 March, Decathlon Belapur</span>
+              <span className="text-white font-medium">6 Mar (4-9 PM) & 7 Mar (1-9 PM), Decathlon Belapur</span>
             </div>
           </div>
         </div>

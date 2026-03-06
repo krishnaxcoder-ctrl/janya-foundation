@@ -105,7 +105,7 @@ export async function POST(request) {
                 <div style="background: #f3f4f6; padding: 20px; border-radius: 10px;">
                   <h3>What's Next?</h3>
                   <ul>
-                    <li><strong>BIB Collection (3KM, 5KM, 10KM & 21.1KM):</strong> March 6-7, 2026 (5 PM - 8 PM) - Decathlon, Belapur</li>
+                    <li><strong>BIB Collection:</strong> 6 Mar (4-9 PM) & 7 Mar (1-9 PM) - Decathlon, Belapur</li>
                     <li><strong>Marathon Day:</strong> March 8, 2026 (5:00 AM) - BD Somani International School, Sector 27</li>
                   </ul>
                 </div>

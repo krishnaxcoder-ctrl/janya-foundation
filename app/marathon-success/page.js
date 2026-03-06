@@ -328,8 +328,8 @@ function MarathonSuccessContent() {
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(8);
       doc.setTextColor(113, 63, 18); // yellow-900
-      doc.text('BIB Collection (3KM, 5KM, 10KM & 21.1KM):', margin + 8, currentY + 15);
-      doc.text('March 6-7, 2026 (5 PM - 8 PM) - Decathlon, Belapur', margin + 70, currentY + 15);
+      doc.text('BIB Collection:', margin + 8, currentY + 15);
+      doc.text('6 Mar (4-9 PM) & 7 Mar (1-9 PM) - Decathlon, Belapur', margin + 70, currentY + 15);
       doc.text('Marathon Day:', margin + 8, currentY + 23);
       doc.text('March 8, 2026 (5:00 AM) - BD Somani International School, Sector 27', margin + 70, currentY + 23);
     }
@@ -544,7 +544,7 @@ function MarathonSuccessContent() {
 
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6 text-left">
               <h4 className="font-semibold text-yellow-800 mb-2">Important Dates</h4>
-              <p className="text-sm text-yellow-700">📅 BIB (3KM, 5KM, 10KM & 21.1KM): March 6-7, 2026 (5 PM - 8 PM) - Decathlon, Belapur</p>
+              <p className="text-sm text-yellow-700">📅 BIB Collection: 6 Mar (4-9 PM) & 7 Mar (1-9 PM) - Decathlon, Belapur</p>
               <p className="text-sm text-yellow-700">🏃 Marathon Day: March 8, 2026 (5:00 AM) - BD Somani International School, Sector 27</p>
             </div>
 
