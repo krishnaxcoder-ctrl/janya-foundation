@@ -78,23 +78,24 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
 
   const navItems = [
     { name: "ABOUT", href: "/about", isLink: true },
+    { name: "CAMPAIGNS", href: "/campaigns", isLink: true },
     { name: "PROGRAMS", href: "#programs" },
     { name: "IMPACT", href: "#impact" },
     { name: "TESTIMONIAL", href: "#testimonial" },
     { name: "GALLERY", href: "/gallery", isLink: true },
-    { name: "GADI MARATHON 2026", href: "https://drive.google.com/drive/folders/1kI4mBYMXsN9sTSSWmGU50bQlGtnhWVHe?usp=sharing", isLink: true, isExternal: true },
+    { name: "GATI MARATHON 2026", href: "https://drive.google.com/drive/folders/1kI4mBYMXsN9sTSSWmGU50bQlGtnhWVHe?usp=sharing", isLink: true, isExternal: true },
     { name: "CONTACT", href: "/contact", isLink: true },
   ];
 
   return (
     <>
       <header
-        className={`fixed w-full z-[100] ${
+        className={`fixed w-full z-[100] border-b-[3px] border-[#e90074] ${
           visible && !forceHide ? 'translate-y-0' : '-translate-y-full'
         } ${
           scrolled
-            ? "bg-white/95 shadow-sm backdrop-blur-md py-1.5 sm:py-2"
-            : "bg-white/80 backdrop-blur-sm py-2 sm:py-2.5"
+            ? "bg-white py-1.5 sm:py-2"
+            : "bg-white py-2 sm:py-2.5"
         }`}
         style={{ top: 0 }}
       >
@@ -205,9 +206,9 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                 rel="noopener noreferrer"
               >
                 <button
-                  className="hidden md:flex bg-gradient-to-r from-[#374342] to-[#2D3B3A] text-white px-3 py-1.5 rounded-md font-semibold shadow-sm hover:shadow-md text-xs items-center space-x-1.5 whitespace-nowrap"
+                  className="hidden md:flex bg-gradient-to-r from-[#374342] to-[#2D3B3A] text-white px-3 py-2 rounded-md font-semibold shadow-sm hover:shadow-md text-xs items-center space-x-1.5 whitespace-nowrap"
                 >
-                  <span>Gadi Marathon 2026</span>
+                  <span>Gati Marathon 2026</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -217,7 +218,7 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
               {/* Donate Button */}
               <button
                 onClick={() => setShowDonationForm(true)}
-                className="hidden md:flex bg-gradient-to-r from-pink-500 to-pink-400 text-white px-3 py-1.5 rounded-md font-semibold shadow-sm hover:shadow-md text-xs items-center space-x-1.5 whitespace-nowrap"
+                className="hidden md:flex bg-gradient-to-r from-[#FF4191] to-[#e90074] text-white px-3 py-2 rounded-md font-semibold shadow-sm hover:shadow-md text-xs items-center space-x-1.5 whitespace-nowrap"
               >
                 <span>Donate Now</span>
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -287,6 +288,11 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     ),
+                    "CAMPAIGNS": (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.297A8.609 8.609 0 0113.5 19H15a2 2 0 002-2V5a2 2 0 00-2-2h-.096c-3.158 0-5.857 1.715-7.404 4.29M11 5.882A8.609 8.609 0 008.5 6H7a2 2 0 00-2 2v12a2 2 0 002 2h.096c3.158 0 5.857-1.715 7.404-4.29V5.882z" />
+                      </svg>
+                    ),
                     "PROGRAMS": (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -307,7 +313,7 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     ),
-                    "GADI MARATHON 2026": (
+                    "GATI MARATHON 2026": (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
@@ -401,11 +407,11 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
-          <span>Gadi Marathon 2026</span>
+          <span>Gati Marathon 2026</span>
         </a>
         <button
           onClick={() => setShowDonationForm(true)}
-          className="flex-1 bg-gradient-to-r from-pink-500 to-pink-400 text-white px-3 py-3 rounded-lg font-semibold shadow-sm active:scale-95 transition-all duration-300 text-sm flex items-center justify-center space-x-1.5"
+          className="flex-1 bg-gradient-to-r from-[#FF4191] to-[#e90074] text-white px-3 py-3 rounded-lg font-semibold shadow-sm active:scale-95 transition-all duration-300 text-sm flex items-center justify-center space-x-1.5"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
