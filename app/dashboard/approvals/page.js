@@ -51,8 +51,10 @@ export default function ApprovalsPage() {
       fetchData();
       // Close modal
       setSelectedCampaign(null);
+      alert(`Campaign ${newStatus} successfully!`);
     } catch (err) {
       console.error(`Error updating campaign to ${newStatus}:`, err);
+      alert(`Failed to update campaign: ${err.message || 'Unknown error'}. Have you added the UPDATE policy in Supabase?`);
     } finally {
       setProcessingId(null);
     }
