@@ -12,69 +12,25 @@ const CampaignSubmissionForm = dynamic(() => import('../components/CampaignSubmi
 const CAMPAIGNS = [
   {
     id: 1,
-    title: "Project Shiksha — Digital Classrooms for Rural Kids",
-    description: "Bridging the digital divide by equipping remote village schools with smart tablets, solar-powered charging stations, and offline learning tools.",
-    image: "https://images.unsplash.com/photo-1497633762265-9a177c809852?auto=format&fit=crop&q=80&w=800",
-    raised: 425600,
-    goal: 1200000,
-    percentage: 35,
-    category: "Education",
-    donors: 218
+    title: "Urgent: Cochlear Implant Upgrade for 7-Year-Old Suyash",
+    description: "Suyash Bedekar needs an urgent upgrade to the N8 Cochlear Processor to continue his schooling. The current processor is discontinued, making this upgrade critical for his hearing and education.",
+    image: "/child.png",
+    raised: 154200,
+    goal: 1396500,
+    percentage: 11,
+    category: "Medical Help",
+    donors: 86
   },
   {
     id: 2,
-    title: "Mission Drishti — Vision Care for Underserved Elders",
-    description: "Providing free cataract surgeries and specialized eye care to the elderly in rural districts who lack access to basic ophthalmology.",
-    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
-    raised: 890450,
-    goal: 1000000,
-    percentage: 89,
-    category: "Healthcare",
-    donors: 642
-  },
-  {
-    id: 3,
-    title: "Shakti Swavlamban — Livelihood for Rural Women",
-    description: "Empowering self-help groups with professional tailoring kits, sewing machines, and business training to kickstart local micro-enterprises.",
-    image: "https://images.unsplash.com/photo-1489980507512-297040484793?auto=format&fit=crop&q=80&w=800",
-    raised: 312000,
+    title: "Protect a Life: HPV Vaccinations for Underprivileged Women",
+    description: "Every donation helps fund critical HPV vaccinations for underprivileged women, protecting them from the risk of cervical cancer and ensuring a healthier future.",
+    image: "https://images.unsplash.com/photo-1644822861254-c99d0022ab70?q=80&w=1170&auto=format&fit=crop&q=80",
+    raised: 2200,
     goal: 500000,
-    percentage: 62,
-    category: "Empowerment",
-    donors: 156
-  },
-  {
-    id: 4,
-    title: "Annapurna — Healthy Meals for Primary Schools",
-    description: "Ensuring no child studies on an empty stomach by providing nutritious daily hot meals to children in govt primary schools.",
-    image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800",
-    raised: 1540200,
-    goal: 2500000,
-    percentage: 61,
-    category: "Nutrition",
-    donors: 1120
-  },
-  {
-    id: 5,
-    title: "Amrit Jal — Clean Water for Tribal Belts",
-    description: "Installing community-scale RO water filtration plants and rainwater harvesting systems in fluoride-affected tribal settlements.",
-    image: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&q=80&w=800",
-    raised: 280000,
-    goal: 800000,
-    percentage: 35,
-    category: "Environment",
-    donors: 94
-  },
-  {
-    id: 6,
-    title: "Aapda Sahaya — Rapid Emergency Response",
-    description: "Maintaining a standby emergency fund to deliver immediate food, medicines, and temporary shelter during seasonal flood crises.",
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800",
-    raised: 450000,
-    goal: 1500000,
-    percentage: 30,
-    category: "Emergency",
-    donors: 287
+    percentage: 0.44,
+    category: "Cervical Cancer Awareness",
+    donors: 4
   }
 ];
 
@@ -117,10 +73,10 @@ const CampaignCard = memo(({ campaign, onDonate }) => (
     </div>
     <div className="px-8 pt-6 pb-8 flex flex-col flex-grow">
       <div className="flex-grow">
-        <h3 className="text-xl font-bold text-gray-900 leading-tight mb-4 group-hover:text-[#e90074] transition-colors duration-300 line-clamp-2 h-14">
+        <h3 className="text-xl font-bold text-gray-900 leading-tight mb-4 group-hover:text-[#e90074] transition-colors duration-300">
           {campaign.title}
         </h3>
-        <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3 h-20">
+        <p className="text-gray-500 text-sm leading-relaxed mb-6">
           {campaign.description}
         </p>
         <div className="space-y-4 mb-8">
