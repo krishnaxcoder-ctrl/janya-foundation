@@ -140,82 +140,121 @@ export default function ApprovalsPage() {
             </TableBody>
           </Table>
         </div>
-      </div>
-
-      {/* Campaign Detail Modal */}
+      </div>      {/* Campaign Detail Modal */}
       {selectedCampaign && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setSelectedCampaign(null)}>
+        <div 
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
+          onClick={() => setSelectedCampaign(null)}
+        >
           <div 
-            className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden relative"
+            className="bg-white/95 backdrop-blur-xl w-full max-w-3xl rounded-[2rem] shadow-2xl border border-white/20 overflow-hidden relative"
             onClick={e => e.stopPropagation()}
           >
-            {/* Header with Image */}
-            <div className="relative h-48 sm:h-64 bg-gray-100">
+            {/* Header / Media Section */}
+            <div className="relative h-64 sm:h-80 group">
               {selectedCampaign.image_url ? (
-                <img src={selectedCampaign.image_url} alt="" className="w-full h-full object-cover" />
+                <img 
+                  src={selectedCampaign.image_url} 
+                  alt="" 
+                  className="w-full h-full object-cover" 
+                />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-300">
-                  <Icons.flag className="w-12 h-12" />
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 text-gray-200">
+                  <span className="scale-[4] opacity-20">{Icons.heart}</span>
                 </div>
               )}
-              <button 
-                onClick={() => setSelectedCampaign(null)}
-                className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full backdrop-blur-md transition-all text-white font-bold"
-              >
-                ✕
-              </button>
+              
+              {/* Overlay Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              
+              {/* Top Actions */}
+              <div className="absolute top-6 right-6 flex items-center gap-3">
+                <button 
+                  onClick={() => setSelectedCampaign(null)}
+                  className="p-3 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-xl border border-white/10"
+                >
+                  <span className="rotate-45 block">{Icons.refresh}</span>
+                </button>
+              </div>
+
+              {/* Title & Category Overlay */}
+              <div className="absolute bottom-6 left-8 right-8 text-white">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="px-3 py-1 rounded-full bg-pink-500 text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-pink-500/30">
+                    {selectedCampaign.category}
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-[10px] font-black uppercase tracking-widest backdrop-blur-md border border-orange-500/30">
+                    Pending Review
+                  </span>
+                </div>
+                <h3 className="text-3xl sm:text-4xl font-black leading-tight tracking-tight drop-shadow-sm">
+                  {selectedCampaign.title}
+                </h3>
+              </div>
             </div>
 
-            <div className="p-8">
-              <div className="mb-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-2xl font-bold text-gray-900">{selectedCampaign.title}</h3>
-                  <span className="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 text-[10px] uppercase font-bold">Pending</span>
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">{selectedCampaign.description}</p>
-              </div>
+            {/* Content Section */}
+            <div className="p-8 sm:p-10">
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+                {/* Left Column: Description & Details */}
+                <div className="lg:col-span-3 space-y-8">
+                  <div>
+                    <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">About Initiative</h4>
+                    <p className="text-gray-600 leading-relaxed text-lg font-medium selection:bg-pink-100">
+                      {selectedCampaign.description}
+                    </p>
+                  </div>
 
-              <div className="grid grid-cols-2 gap-8 mb-8">
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Organizer Details</span>
-                    <p className="font-bold text-gray-900">{selectedCampaign.organizer_name}</p>
-                    <p className="text-xs text-gray-500">{selectedCampaign.organizer_email}</p>
-                    {selectedCampaign.organizer_phone && <p className="text-xs text-gray-500">{selectedCampaign.organizer_phone}</p>}
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Category</span>
-                    <p className="font-bold text-[#e90074]">{selectedCampaign.category}</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Financial Goal</span>
-                    <p className="text-2xl font-black text-gray-900">₹{parseFloat(selectedCampaign.goal_amount || 0).toLocaleString()}</p>
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Submission Date</span>
-                    <p className="text-sm font-medium">{new Date(selectedCampaign.created_at).toLocaleString()}</p>
+                  <div className="grid grid-cols-2 gap-6 bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
+                    <div>
+                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Organizer</h4>
+                      <div className="space-y-1">
+                        <p className="font-bold text-gray-900 border-l-2 border-pink-500 pl-3">{selectedCampaign.organizer_name}</p>
+                        <p className="text-xs text-gray-500 pl-3">{selectedCampaign.organizer_email}</p>
+                        {selectedCampaign.organizer_phone && (
+                          <p className="text-xs text-gray-400 pl-3">{selectedCampaign.organizer_phone}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Goal Info</h4>
+                      <p className="text-2xl font-black text-gray-900 leading-none">₹{parseFloat(selectedCampaign.goal_amount || 0).toLocaleString()}</p>
+                      <p className="text-[10px] text-gray-400 mt-2 font-bold uppercase">Target Amount</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Action Buttons */}
-              <div className="flex gap-4 pt-4 border-t border-gray-100">
-                <button 
-                  onClick={() => handleAction(selectedCampaign.id, 'approved')}
-                  disabled={processingId === selectedCampaign.id}
-                  className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-green-100 disabled:opacity-50"
-                >
-                  {processingId === selectedCampaign.id ? 'Processing...' : 'Approve Campaign'}
-                </button>
-                <button 
-                  onClick={() => handleAction(selectedCampaign.id, 'rejected')}
-                  disabled={processingId === selectedCampaign.id}
-                  className="flex-1 bg-white border-2 border-red-50 hover:bg-red-50 text-red-600 font-bold py-4 rounded-xl transition-all disabled:opacity-50"
-                >
-                  Reject Request
-                </button>
+                {/* Right Column: Actions / Stats */}
+                <div className="lg:col-span-2 flex flex-col justify-end">
+                  <div className="space-y-4">
+                    <button 
+                      onClick={() => handleAction(selectedCampaign.id, 'approved')}
+                      disabled={processingId === selectedCampaign.id}
+                      className="w-full group relative overflow-hidden bg-gray-900 text-white font-black py-5 rounded-2xl shadow-2xl shadow-gray-200 disabled:opacity-50"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2 uppercase tracking-widest text-xs">
+                        {processingId === selectedCampaign.id ? (
+                          <span className="">{Icons.refresh}</span>
+                        ) : (
+                          <>Approve Initiative <span className="rotate-90">{Icons.refresh}</span></>
+                        )}
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600 translate-y-full group-hover:translate-y-0" />
+                    </button>
+
+                    <button 
+                      onClick={() => handleAction(selectedCampaign.id, 'rejected')}
+                      disabled={processingId === selectedCampaign.id}
+                      className="w-full bg-white border-2 border-gray-100 hover:border-red-100 hover:text-red-500 font-bold py-5 rounded-2xl text-gray-500 text-xs uppercase tracking-widest disabled:opacity-50"
+                    >
+                      Decline Request
+                    </button>
+                    
+                    <p className="text-[9px] text-center text-gray-400 uppercase font-bold tracking-widest pt-2">
+                       Manual verification required before approval
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
