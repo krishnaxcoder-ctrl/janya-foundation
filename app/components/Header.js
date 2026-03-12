@@ -136,7 +136,6 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                       className="px-3 py-1.5 text-gray-700 hover:text-pink-500 font-semibold text-xs relative group font-sans tracking-wide whitespace-nowrap"
                     >
                       {item.name}
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-500 hidden group-hover:block"></span>
                     </Link>
                   ) : isHomePage ? (
                     <a
@@ -168,7 +167,6 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                       }}
                     >
                       {item.name}
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-500 hidden group-hover:block"></span>
                     </a>
                   ) : (
                     <Link
@@ -177,7 +175,6 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                       className="px-3 py-1.5 text-gray-700 hover:text-pink-500 font-semibold text-xs relative group font-sans tracking-wide whitespace-nowrap"
                     >
                       {item.name}
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-500 hidden group-hover:block"></span>
                     </Link>
                   )
                 ))}

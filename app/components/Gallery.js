@@ -310,7 +310,7 @@ export default function Gallery({ onDonateClick }) {
           {galleryImages.map((image) => (
             <div
               key={image.id}
-              className="break-inside-avoid mb-6 bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer"
+              className="break-inside-avoid mb-6 bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl cursor-pointer"
               onClick={() => setSelectedImage(image)}
             >
               <div className="relative overflow-hidden">
