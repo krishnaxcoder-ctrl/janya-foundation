@@ -12,8 +12,8 @@ const CampaignSubmissionForm = dynamic(() => import('../components/CampaignSubmi
 const CAMPAIGNS = [
   {
     id: 1,
-    title: "Urgent: Cochlear Implant Upgrade for 7-Year-Old Suyash",
-    description: "Suyash Bedekar needs an urgent upgrade to the N8 Cochlear Processor to continue his schooling. The current processor is discontinued, making this upgrade critical for his hearing and education.",
+    title: "Urgent: N8 Cochlear Processor Upgrade for 7-year-old Suyash",
+    description: "Suyash Bedekar needs an urgent upgrade to the N8 Cochlear Processor to continue his education. Production for his current device has stopped, making this upgrade critical for his hearing and future.",
     image: "/child.png",
     raised: 154200,
     goal: 1396500,
@@ -31,6 +31,28 @@ const CAMPAIGNS = [
     percentage: 0.44,
     category: "Cervical Cancer Awareness",
     donors: 4
+  },
+  {
+    id: 3,
+    title: "Fight Against Leukemia: Support Darshana's Life-Saving Treatment",
+    description: "Mrs. Darshana Padwal, 53, is fighting Acute Myeloid Leukemia (AML). She needs urgent medical intervention and supportive care to overcome this critical battle for her life.",
+    image: "/800000/WhatsApp Image 2026-03-03 at 8.17.19 PM (1).jpeg",
+    raised: 45000,
+    goal: 800000,
+    percentage: 5,
+    category: "Medical Relief",
+    donors: 12
+  },
+  {
+    id: 4,
+    title: "Critical Care: Urgent Medical Support for an Elderly Mother",
+    description: "This elderly patient is currently in intensive care, requiring specialized medical procedures and round-the-clock monitoring to recover from a severe health crisis.",
+    image: "/1200000/WhatsApp Image 2026-03-03 at 8.16.40 PM.jpeg",
+    raised: 120000,
+    goal: 1200000,
+    percentage: 10,
+    category: "Intensive Care",
+    donors: 28
   }
 ];
 
