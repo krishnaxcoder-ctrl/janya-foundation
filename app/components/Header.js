@@ -82,7 +82,7 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
     { name: "IMPACT", href: "#impact" },
     { name: "TESTIMONIAL", href: "#testimonial" },
     { name: "GALLERY", href: "/gallery", isLink: true },
-    { name: "MARATHON", href: "/marathon", isLink: true },
+    { name: "GADI MARATHON 2026", href: "https://drive.google.com/drive/folders/1kI4mBYMXsN9sTSSWmGU50bQlGtnhWVHe?usp=sharing", isLink: true, isExternal: true },
     { name: "CONTACT", href: "/contact", isLink: true },
   ];
 
@@ -99,12 +99,13 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
         style={{ top: 0 }}
       >
         <div className="w-full px-3 sm:px-5 lg:px-10">
-          <div className="flex items-center justify-between md:grid md:grid-cols-3">
+          <div className="flex items-center justify-between md:grid md:grid-cols-4">
             {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center space-x-2 hover:opacity-80 cursor-pointer"
-            >
+            <div className="md:col-span-1">
+              <Link
+                href="/"
+                className="flex items-center space-x-2 hover:opacity-80 cursor-pointer"
+              >
               <div className="h-9 w-9 sm:h-10 sm:w-10 relative">
                 <Image
                   src="/sitelogo.jpg"
@@ -114,23 +115,25 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                   className="rounded-full"
                 />
               </div>
-              <div>
-                <span className="text-sm sm:text-base font-bold text-gray-900 tracking-tight font-sans block">
-                  JANYA FOUNDATION
-                </span>
-                <p className="text-[10px] text-pink-500 font-medium font-sans">Empowering Women & Children</p>
-              </div>
-            </Link>
+                <div>
+                  <span className="text-sm sm:text-base font-bold text-gray-900 tracking-tight font-sans block">
+                    JANYA FOUNDATION
+                  </span>
+                  <p className="text-[10px] text-pink-500 font-medium font-sans">Empowering Women & Children</p>
+                </div>
+              </Link>
+            </div>
 
             {/* Desktop Navigation - Centered */}
-            <nav className="hidden md:flex items-center justify-center ml-16">
-              <div className="flex items-center space-x-2">
+            <div className="md:col-span-2 flex justify-center">
+              <nav className="hidden md:flex items-center justify-center">
+              <div className="flex items-center space-x-3 lg:space-x-1">
                 {navItems.map((item, index) => (
                   item.isLink ? (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="px-2 py-1.5 text-gray-700 hover:text-pink-500 font-semibold text-xs relative group font-sans tracking-wide"
+                      className="px-3 py-1.5 text-gray-700 hover:text-pink-500 font-semibold text-xs relative group font-sans tracking-wide whitespace-nowrap"
                     >
                       {item.name}
                       <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-500 hidden group-hover:block"></span>
@@ -139,7 +142,7 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="px-2 py-1.5 text-gray-700 hover:text-pink-500 font-semibold text-xs relative group font-sans tracking-wide"
+                      className="px-3 py-1.5 text-gray-700 hover:text-pink-500 font-semibold text-xs relative group font-sans tracking-wide whitespace-nowrap"
                       onClick={(e) => {
                         e.preventDefault();
                         // Find the element to scroll to
@@ -171,7 +174,7 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                     <Link
                       key={item.name}
                       href={`/${item.href}`}
-                      className="px-2 py-1.5 text-gray-700 hover:text-pink-500 font-semibold text-xs relative group font-sans tracking-wide"
+                      className="px-3 py-1.5 text-gray-700 hover:text-pink-500 font-semibold text-xs relative group font-sans tracking-wide whitespace-nowrap"
                     >
                       {item.name}
                       <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-500 hidden group-hover:block"></span>
@@ -180,9 +183,10 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                 ))}
               </div>
             </nav>
+          </div>
 
-            {/* Mobile menu button and Donate Button */}
-            <div className="flex items-center justify-end space-x-3">
+          {/* Mobile menu button and Donate Button */}
+            <div className="md:col-span-1 flex items-center justify-end space-x-3">
               <button
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
                 className="md:hidden p-1.5 text-gray-700 hover:text-pink-500 rounded-lg hover:bg-pink-50 border border-gray-200"
@@ -198,16 +202,20 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
               </button>
 
               {/* Marathon Button */}
-              <Link href="/marathon">
+              <a 
+                href="https://drive.google.com/drive/folders/1kI4mBYMXsN9sTSSWmGU50bQlGtnhWVHe?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <button
                   className="hidden md:flex bg-gradient-to-r from-[#374342] to-[#2D3B3A] text-white px-3 py-1.5 rounded-md font-semibold shadow-sm hover:shadow-md text-xs items-center space-x-1.5 whitespace-nowrap"
                 >
-                  <span>Marathon</span>
+                  <span>Gadi Marathon 2026</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </button>
-              </Link>
+              </a>
 
               {/* Donate Button */}
               <button
@@ -302,7 +310,7 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     ),
-                    "MARATHON": (
+                    "GADI MARATHON 2026": (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
@@ -387,15 +395,17 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
 
       {/* Mobile Fixed Bottom Buttons */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-gray-200 px-4 py-3 flex items-center gap-2">
-        <Link
-          href="/marathon"
+        <a
+          href="https://drive.google.com/drive/folders/1kI4mBYMXsN9sTSSWmGU50bQlGtnhWVHe?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex-1 bg-gradient-to-r from-[#374342] to-[#2D3B3A] text-white px-3 py-3 rounded-lg font-semibold shadow-sm active:scale-95 transition-all duration-300 text-sm flex items-center justify-center space-x-1.5"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
-          <span>Marathon</span>
-        </Link>
+          <span>Gadi Marathon 2026</span>
+        </a>
         <button
           onClick={() => setShowDonationForm(true)}
           className="flex-1 bg-gradient-to-r from-pink-500 to-pink-400 text-white px-3 py-3 rounded-lg font-semibold shadow-sm active:scale-95 transition-all duration-300 text-sm flex items-center justify-center space-x-1.5"
