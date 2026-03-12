@@ -45,8 +45,8 @@ export default function CampaignSubmissionForm({ onClose, inline = false }) {
         setTimeout(() => onClose(), 2000);
       }
     } catch (err) {
-      console.error('Error submitting campaign:', err);
-      setError('Failed to submit campaign. Please try again.');
+      console.error('Error submitting campaign:', err.message || err);
+      setError(err.message || 'Failed to submit campaign. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
