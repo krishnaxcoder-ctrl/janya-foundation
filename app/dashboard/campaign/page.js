@@ -164,133 +164,98 @@ export default function ManageCampaignsPage() {
       {/* Campaign Detail Modal */}
       {selectedCampaign && (
         <div 
-          className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/50"
           onClick={() => setSelectedCampaign(null)}
         >
           <div 
-            className="bg-white/95 backdrop-blur-xl w-full max-w-3xl rounded-[2rem] shadow-2xl border border-white/20 overflow-hidden relative"
+            className="bg-white w-full max-w-2xl rounded-xl shadow-xl overflow-hidden relative border border-gray-200"
             onClick={e => e.stopPropagation()}
           >
-            {/* Header / Media Section */}
-            <div className="relative h-64 sm:h-80 group">
-              {selectedCampaign.image_url ? (
-                <img 
-                  src={selectedCampaign.image_url} 
-                  alt="" 
-                  className="w-full h-full object-cover" 
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 text-gray-200">
-                  <span className="scale-[4] opacity-20">{Icons.heart}</span>
-                </div>
-              )}
-              
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              
-              {/* Top Actions */}
-              <div className="absolute top-6 right-6 flex items-center gap-3">
-                <button 
-                  onClick={() => setSelectedCampaign(null)}
-                  className="p-3 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-xl border border-white/10"
-                >
-                  <span className="rotate-45 block">{Icons.refresh}</span>
-                </button>
+            {/* Simple Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <span className="px-2.5 py-1 rounded bg-pink-100 text-pink-700 text-[10px] font-bold uppercase tracking-wider">
+                  {selectedCampaign.category}
+                </span>
+                {getStatusBadge(selectedCampaign.status)}
               </div>
-
-              {/* Title & Status Overlay */}
-              <div className="absolute bottom-6 left-8 right-8 text-white text-left">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="px-3 py-1 rounded-full bg-[#e90074] text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-pink-500/30">
-                    {selectedCampaign.category}
-                  </span>
-                  <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-full h-2 w-2" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white/80">
-                    ID: {selectedCampaign.id.slice(0, 8)}
-                  </span>
-                </div>
-                <h3 className="text-3xl sm:text-4xl font-black leading-tight tracking-tight drop-shadow-sm">
-                  {selectedCampaign.title}
-                </h3>
-              </div>
+              <button 
+                onClick={() => setSelectedCampaign(null)}
+                className="text-gray-400 hover:text-gray-600 p-1"
+              >
+                {Icons.x}
+              </button>
             </div>
 
-            {/* Content Section */}
-            <div className="p-8 sm:p-10 text-left">
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-                {/* Left Column: Description & Metadata */}
-                <div className="lg:col-span-3 space-y-8">
-                  <p className="text-gray-600 leading-relaxed text-lg font-medium selection:bg-pink-100 underline decoration-pink-500/20 underline-offset-4 decoration-2">
-                    {selectedCampaign.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-10 border-t border-gray-100 pt-8">
+            <div className="p-8">
+              {/* Image & Main Info */}
+              <div className="flex flex-col md:flex-row gap-8 mb-8">
+                {selectedCampaign.image_url && (
+                  <div className="w-full md:w-48 h-48 rounded-lg overflow-hidden border border-gray-100 flex-shrink-0">
+                    <img src={selectedCampaign.image_url} alt="" className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{selectedCampaign.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6">{selectedCampaign.description}</p>
+                  
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Organizer</h4>
-                      <p className="font-bold text-gray-900">{selectedCampaign.organizer_name}</p>
+                      <p className="text-[10px] text-gray-400 uppercase font-bold">Organizer</p>
+                      <p className="text-sm font-semibold">{selectedCampaign.organizer_name}</p>
                       <p className="text-xs text-gray-500">{selectedCampaign.organizer_email}</p>
                     </div>
                     <div className="space-y-1">
-                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Visibility</h4>
-                      <div className="flex items-center gap-2">
-                        {getStatusBadge(selectedCampaign.status)}
-                      </div>
+                      <p className="text-[10px] text-gray-400 uppercase font-bold">Goal Amount</p>
+                      <p className="text-lg font-bold text-gray-900">₹{parseFloat(selectedCampaign.goal_amount || 0).toLocaleString()}</p>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Right Column: Financials & Action */}
-                <div className="lg:col-span-2 flex flex-col justify-end">
-                  <div className="bg-gray-50/80 rounded-3xl p-8 border border-white shadow-sm space-y-6">
-                    <div className="space-y-2">
-                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Financial Progress</h4>
-                      <div className="flex justify-between items-end mb-1">
-                        <span className="text-2xl font-black text-gray-900 leading-none">
-                          ₹{parseFloat(selectedCampaign.raised_amount || 0).toLocaleString()}
-                        </span>
-                        <span className="text-pink-600 font-black text-sm">
-                          {Math.round((parseFloat(selectedCampaign.raised_amount || 0) / parseFloat(selectedCampaign.goal_amount || 0)) * 100)}%
-                        </span>
-                      </div>
-                      <div className="h-3 w-full bg-gray-200 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-[#e90074] rounded-full shadow-[0_0_15px_rgba(233,0,116,0.3)]"
-                          style={{ width: `${(parseFloat(selectedCampaign.raised_amount || 0) / parseFloat(selectedCampaign.goal_amount || 0)) * 100}%` }}
-                        />
-                      </div>
-                      <div className="flex justify-between items-center pt-2">
-                        <p className="text-[10px] font-bold text-gray-400 uppercase">Goal: ₹{parseFloat(selectedCampaign.goal_amount || 0).toLocaleString()}</p>
-                        <p className="text-[10px] font-black text-pink-600 uppercase tracking-widest underline underline-offset-4 underline-thickness-2">{selectedCampaign.donors_count || 0} Donors</p>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 space-y-3">
-                      {selectedCampaign.status === 'pending' ? (
-                        <>
-                          <button 
-                            onClick={() => handleAction(selectedCampaign.id, 'approved')}
-                            className="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-green-100 text-xs uppercase tracking-widest"
-                          >
-                            Approve Now
-                          </button>
-                          <button 
-                            onClick={() => handleAction(selectedCampaign.id, 'rejected')}
-                            className="w-full bg-white border border-red-100 text-red-500 font-black py-4 rounded-2xl transition-all text-[10px] uppercase tracking-widest hover:bg-red-50"
-                          >
-                            Reject Initiative
-                          </button>
-                        </>
-                      ) : (
-                        <button 
-                          onClick={() => setSelectedCampaign(null)}
-                          className="w-full bg-gray-900 text-white font-black py-5 rounded-2xl hover:bg-black shadow-2xl shadow-gray-200 text-xs uppercase tracking-widest flex items-center justify-center gap-2"
-                        >
-                          Close Preview
-                        </button>
-                      )}
-                    </div>
-                  </div>
+              {/* Progress Bar */}
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 mb-8">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-xs font-bold text-gray-500 uppercase">Financial Progress</span>
+                  <span className="text-xs font-bold text-pink-600">{Math.round((parseFloat(selectedCampaign.raised_amount || 0) / parseFloat(selectedCampaign.goal_amount || 0)) * 100)}%</span>
                 </div>
+                <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden mb-2">
+                  <div 
+                    className="h-full bg-pink-600 rounded-full"
+                    style={{ width: `${Math.min(100, (parseFloat(selectedCampaign.raised_amount || 0) / parseFloat(selectedCampaign.goal_amount || 0)) * 100)}%` }}
+                  />
+                </div>
+                <div className="flex justify-between text-[10px] font-bold text-gray-400">
+                  <span>RAISED: ₹{parseFloat(selectedCampaign.raised_amount || 0).toLocaleString()}</span>
+                  <span>TARGET: ₹{parseFloat(selectedCampaign.goal_amount || 0).toLocaleString()}</span>
+                </div>
+              </div>
+
+              {/* Simple Actions */}
+              <div className="flex gap-3">
+                {selectedCampaign.status === 'pending' ? (
+                  <>
+                    <button 
+                      onClick={() => handleAction(selectedCampaign.id, 'approved')}
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg text-sm transition-colors"
+                    >
+                      Approve Campaign
+                    </button>
+                    <button 
+                      onClick={() => handleAction(selectedCampaign.id, 'rejected')}
+                      className="flex-1 bg-white border border-red-200 text-red-600 hover:bg-red-50 font-bold py-3 rounded-lg text-sm transition-colors"
+                    >
+                      Reject
+                    </button>
+                  </>
+                ) : (
+                  <button 
+                    onClick={() => setSelectedCampaign(null)}
+                    className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 rounded-lg text-sm transition-colors"
+                  >
+                    Close Preview
+                  </button>
+                )}
               </div>
             </div>
           </div>

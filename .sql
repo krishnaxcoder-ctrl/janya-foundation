@@ -1,0 +1,142 @@
+-- WARNING: This schema is for context only and is not meant to be run.
+-- Table order and constraints may not be valid for execution.
+
+CREATE TABLE public.admin_users (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  username character varying NOT NULL UNIQUE,
+  password_hash character varying NOT NULL,
+  is_active boolean DEFAULT true,
+  last_login timestamp with time zone,
+  created_at timestamp with time zone DEFAULT now(),
+  email character varying UNIQUE,
+  CONSTRAINT admin_users_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.campaign_donations (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  created_at timestamp with time zone DEFAULT now(),
+  donor_name character varying NOT NULL,
+  donor_email character varying NOT NULL,
+  donor_phone character varying NOT NULL,
+  pan_number character varying,
+  amount numeric NOT NULL,
+  transaction_id character varying NOT NULL UNIQUE,
+  payment_id character varying,
+  payment_status character varying DEFAULT 'PENDING'::character varying,
+  campaign_id character varying DEFAULT 'hpv-vaccination'::character varying,
+  campaign_name character varying DEFAULT 'HPV Vaccination Campaign'::character varying,
+  is_anonymous boolean DEFAULT false,
+  display_name character varying,
+  message text,
+  address text,
+  pincode character varying,
+  city character varying,
+  state character varying,
+  country character varying DEFAULT 'INDIA'::character varying,
+  CONSTRAINT campaign_donations_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.campaigns (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  created_at timestamp with time zone DEFAULT now(),
+  title text NOT NULL,
+  description text NOT NULL,
+  image_url text,
+  goal_amount numeric NOT NULL,
+  raised_amount numeric DEFAULT 0,
+  category text NOT NULL,
+  organizer_name text NOT NULL,
+  organizer_email text NOT NULL,
+  organizer_phone text,
+  status text DEFAULT 'pending'::text CHECK (status = ANY (ARRAY['pending'::text, 'approved'::text, 'rejected'::text])),
+  donors_count integer DEFAULT 0,
+  user_id uuid,
+  CONSTRAINT campaigns_pkey PRIMARY KEY (id),
+  CONSTRAINT campaigns_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id)
+);
+CREATE TABLE public.coupon_usage (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  coupon_code character varying NOT NULL,
+  phone character varying NOT NULL,
+  email character varying NOT NULL,
+  name character varying,
+  amount_discounted integer DEFAULT 100,
+  transaction_id character varying,
+  used_at timestamp with time zone DEFAULT now(),
+  created_at timestamp with time zone DEFAULT now(),
+  CONSTRAINT coupon_usage_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.coupons (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  code character varying NOT NULL UNIQUE,
+  type character varying NOT NULL CHECK (type::text = ANY (ARRAY['fixed'::character varying, 'percent'::character varying, 'raceFixed'::character varying, 'raceFinalPrice'::character varying]::text[])),
+  amount integer,
+  percent numeric,
+  discount_by_race jsonb,
+  competitive_only boolean DEFAULT false,
+  valid_race_ids ARRAY,
+  max_uses integer,
+  uses_count integer DEFAULT 0,
+  expires_at timestamp with time zone,
+  is_active boolean DEFAULT true,
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now(),
+  final_price_by_race jsonb,
+  CONSTRAINT coupons_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.keep_alive (
+  id integer NOT NULL DEFAULT nextval('keep_alive_id_seq'::regclass),
+  last_ping timestamp with time zone DEFAULT now(),
+  ping_count integer DEFAULT 0,
+  CONSTRAINT keep_alive_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.marathon_registrations (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  created_at timestamp with time zone DEFAULT now(),
+  name character varying NOT NULL,
+  email character varying NOT NULL,
+  phone character varying NOT NULL,
+  emergency_phone character varying,
+  age_legacy integer,
+  gender character varying,
+  tshirt_size character varying,
+  address text,
+  race_category character varying NOT NULL,
+  race_name character varying,
+  amount numeric NOT NULL,
+  convenience_fee numeric,
+  coupon_code character varying,
+  coupon_discount numeric DEFAULT 0,
+  total_amount numeric NOT NULL,
+  payment_id character varying,
+  transaction_id character varying,
+  payment_status character varying DEFAULT 'SUCCESS'::character varying,
+  is_donation boolean DEFAULT false,
+  is_run_for_cause boolean DEFAULT false,
+  race_type text,
+  date_of_birth date,
+  race_id character varying,
+  email_sent boolean DEFAULT false,
+  webhook_received_at timestamp with time zone,
+  CONSTRAINT marathon_registrations_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.races (
+  id character varying NOT NULL,
+  distance character varying NOT NULL,
+  name character varying NOT NULL,
+  price integer NOT NULL,
+  description text,
+  is_run_for_cause boolean DEFAULT false,
+  is_kids_run boolean DEFAULT false,
+  is_donation boolean DEFAULT false,
+  is_test boolean DEFAULT false,
+  min_age integer DEFAULT 5,
+  max_age integer DEFAULT 100,
+  is_sold_out boolean DEFAULT false,
+  is_active boolean DEFAULT true,
+  sort_order integer DEFAULT 0,
+  category character varying,
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now(),
+  image_url text,
+  original_price integer,
+  CONSTRAINT races_pkey PRIMARY KEY (id)
+);

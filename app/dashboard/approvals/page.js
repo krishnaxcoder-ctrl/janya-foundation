@@ -143,118 +143,73 @@ export default function ApprovalsPage() {
       </div>      {/* Campaign Detail Modal */}
       {selectedCampaign && (
         <div 
-          className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/50"
           onClick={() => setSelectedCampaign(null)}
         >
           <div 
-            className="bg-white/95 backdrop-blur-xl w-full max-w-3xl rounded-[2rem] shadow-2xl border border-white/20 overflow-hidden relative"
+            className="bg-white w-full max-w-2xl rounded-xl shadow-xl overflow-hidden relative border border-gray-200"
             onClick={e => e.stopPropagation()}
           >
-            {/* Header / Media Section */}
-            <div className="relative h-64 sm:h-80 group">
-              {selectedCampaign.image_url ? (
-                <img 
-                  src={selectedCampaign.image_url} 
-                  alt="" 
-                  className="w-full h-full object-cover" 
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 text-gray-200">
-                  <span className="scale-[4] opacity-20">{Icons.heart}</span>
-                </div>
-              )}
-              
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              
-              {/* Top Actions */}
-              <div className="absolute top-6 right-6 flex items-center gap-3">
-                <button 
-                  onClick={() => setSelectedCampaign(null)}
-                  className="p-3 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-xl border border-white/10"
-                >
-                  <span className="rotate-45 block">{Icons.refresh}</span>
-                </button>
+            {/* Simple Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <span className="px-2.5 py-1 rounded bg-orange-100 text-orange-700 text-[10px] font-bold uppercase tracking-wider">
+                  {selectedCampaign.category}
+                </span>
+                <span className="px-2.5 py-1 rounded bg-gray-100 text-gray-700 text-[10px] font-bold uppercase tracking-wider">
+                  Pending Review
+                </span>
               </div>
-
-              {/* Title & Category Overlay */}
-              <div className="absolute bottom-6 left-8 right-8 text-white">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="px-3 py-1 rounded-full bg-pink-500 text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-pink-500/30">
-                    {selectedCampaign.category}
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-[10px] font-black uppercase tracking-widest backdrop-blur-md border border-orange-500/30">
-                    Pending Review
-                  </span>
-                </div>
-                <h3 className="text-3xl sm:text-4xl font-black leading-tight tracking-tight drop-shadow-sm">
-                  {selectedCampaign.title}
-                </h3>
-              </div>
+              <button 
+                onClick={() => setSelectedCampaign(null)}
+                className="text-gray-400 hover:text-gray-600 p-1"
+              >
+                {Icons.x}
+              </button>
             </div>
 
-            {/* Content Section */}
-            <div className="p-8 sm:p-10">
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-                {/* Left Column: Description & Details */}
-                <div className="lg:col-span-3 space-y-8">
-                  <div>
-                    <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">About Initiative</h4>
-                    <p className="text-gray-600 leading-relaxed text-lg font-medium selection:bg-pink-100">
-                      {selectedCampaign.description}
-                    </p>
+            <div className="p-8">
+              {/* Image & Main Info */}
+              <div className="flex flex-col md:flex-row gap-8 mb-8">
+                {selectedCampaign.image_url && (
+                  <div className="w-full md:w-48 h-48 rounded-lg overflow-hidden border border-gray-100 flex-shrink-0">
+                    <img src={selectedCampaign.image_url} alt="" className="w-full h-full object-cover" />
                   </div>
-
-                  <div className="grid grid-cols-2 gap-6 bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
-                    <div>
-                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Organizer</h4>
-                      <div className="space-y-1">
-                        <p className="font-bold text-gray-900 border-l-2 border-pink-500 pl-3">{selectedCampaign.organizer_name}</p>
-                        <p className="text-xs text-gray-500 pl-3">{selectedCampaign.organizer_email}</p>
-                        {selectedCampaign.organizer_phone && (
-                          <p className="text-xs text-gray-400 pl-3">{selectedCampaign.organizer_phone}</p>
-                        )}
-                      </div>
+                )}
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{selectedCampaign.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6">{selectedCampaign.description}</p>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <p className="text-[10px] text-gray-400 uppercase font-bold">Organizer</p>
+                      <p className="text-sm font-semibold">{selectedCampaign.organizer_name}</p>
+                      <p className="text-xs text-gray-500">{selectedCampaign.organizer_email}</p>
                     </div>
-                    <div>
-                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Goal Info</h4>
-                      <p className="text-2xl font-black text-gray-900 leading-none">₹{parseFloat(selectedCampaign.goal_amount || 0).toLocaleString()}</p>
-                      <p className="text-[10px] text-gray-400 mt-2 font-bold uppercase">Target Amount</p>
+                    <div className="space-y-1">
+                      <p className="text-[10px] text-gray-400 uppercase font-bold">Goal Amount</p>
+                      <p className="text-lg font-bold text-gray-900">₹{parseFloat(selectedCampaign.goal_amount || 0).toLocaleString()}</p>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Right Column: Actions / Stats */}
-                <div className="lg:col-span-2 flex flex-col justify-end">
-                  <div className="space-y-4">
-                    <button 
-                      onClick={() => handleAction(selectedCampaign.id, 'approved')}
-                      disabled={processingId === selectedCampaign.id}
-                      className="w-full group relative overflow-hidden bg-gray-900 text-white font-black py-5 rounded-2xl shadow-2xl shadow-gray-200 disabled:opacity-50"
-                    >
-                      <span className="relative z-10 flex items-center justify-center gap-2 uppercase tracking-widest text-xs">
-                        {processingId === selectedCampaign.id ? (
-                          <span className="">{Icons.refresh}</span>
-                        ) : (
-                          <>Approve Initiative <span className="rotate-90">{Icons.refresh}</span></>
-                        )}
-                      </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600 translate-y-full group-hover:translate-y-0" />
-                    </button>
-
-                    <button 
-                      onClick={() => handleAction(selectedCampaign.id, 'rejected')}
-                      disabled={processingId === selectedCampaign.id}
-                      className="w-full bg-white border-2 border-gray-100 hover:border-red-100 hover:text-red-500 font-bold py-5 rounded-2xl text-gray-500 text-xs uppercase tracking-widest disabled:opacity-50"
-                    >
-                      Decline Request
-                    </button>
-                    
-                    <p className="text-[9px] text-center text-gray-400 uppercase font-bold tracking-widest pt-2">
-                       Manual verification required before approval
-                    </p>
-                  </div>
-                </div>
+              {/* Simple Actions */}
+              <div className="flex gap-3 pt-6 border-t border-gray-100">
+                <button 
+                  onClick={() => handleAction(selectedCampaign.id, 'approved')}
+                  disabled={processingId === selectedCampaign.id}
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg text-sm transition-colors disabled:opacity-50"
+                >
+                  {processingId === selectedCampaign.id ? 'Processing...' : 'Approve Initiative'}
+                </button>
+                <button 
+                  onClick={() => handleAction(selectedCampaign.id, 'rejected')}
+                  disabled={processingId === selectedCampaign.id}
+                  className="flex-1 bg-white border border-red-200 text-red-600 hover:bg-red-50 font-bold py-3 rounded-lg text-sm transition-colors disabled:opacity-50"
+                >
+                  Decline
+                </button>
               </div>
             </div>
           </div>

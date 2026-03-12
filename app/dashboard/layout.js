@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { supabase } from '@/lib/supabase';
 
 // Icons
 export const Icons = {
@@ -109,7 +110,13 @@ export default function DashboardLayout({ children }) {
   const [coupons, setCoupons] = useState([]);
   const [races, setRaces] = useState([]);
   const [campaignDonations, setCampaignDonations] = useState([]);
-  const [campaignStats, setCampaignStats] = useState({ totalRaised: 0, donorCount: 0, goal: 500000, pendingApprovals: 0 });
+  const [campaignStats, setCampaignStats] = useState({ 
+    totalCampaigns: 0, 
+    pendingApprovals: 0, 
+    totalRegistrations: 0, 
+    totalCoupons: 0, 
+    totalRaces: 0 
+  });
   const [loading, setLoading] = useState(false);
 
 
@@ -164,36 +171,55 @@ export default function DashboardLayout({ children }) {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [regRes, allCouponsRes, racesRes, campaignRes] = await Promise.all([
+      // Fetch data from legacy APIs if still needed for list views (keeping them for now)
+      const [regRes, allCouponsRes, racesRes] = await Promise.all([
         fetch('/api/dashboard/registrations'),
         fetch('/api/admin/coupons'),
         fetch('/api/admin/races'),
-        fetch('/api/admin/campaign-donations'),
       ]);
-      const regData = await regRes.json();
-      const allCouponsData = await allCouponsRes.json();
-      const racesData = await racesRes.json();
-      const campaignData = await campaignRes.json();
+      
+      const [regData, allCouponsData, racesData] = await Promise.all([
+        regRes.json(),
+        allCouponsRes.json(),
+        racesRes.json(),
+      ]);
 
       if (regData.success) setAllRegistrations(regData.registrations || []);
       if (allCouponsData.success) setCoupons(allCouponsData.coupons || []);
       if (racesData.success) setRaces(racesData.races || []);
-      if (campaignData.success) {
-        setCampaignDonations(campaignData.donations || []);
-        
-        // Fetch pending approvals count from Supabase
-        const { count, error: countError } = await supabase
-          .from('campaigns')
-          .select('*', { count: 'exact', head: true })
-          .eq('status', 'pending');
-        
-        setCampaignStats({
-          ...(campaignData.stats || { totalRaised: 0, donorCount: 0, goal: 500000 }),
-          pendingApprovals: count || 0
-        });
-      }
-    } catch {
-      // Handle error silently
+
+      // FETCH COUNTS FROM SUPABASE (Source of truth)
+      // Perform all count queries in parallel
+      const [
+        { count: regCount, error: regErr },
+        { count: campaignCount, error: campErr },
+        { count: pendingCount, error: pendErr },
+        { count: couponCount, error: coupErr },
+        { count: raceCount, error: raceErr }
+      ] = await Promise.all([
+        supabase.from('marathon_registrations').select('*', { count: 'exact', head: true }),
+        supabase.from('campaigns').select('*', { count: 'exact', head: true }),
+        supabase.from('campaigns').select('*', { count: 'exact', head: true }).eq('status', 'pending'),
+        supabase.from('coupons').select('*', { count: 'exact', head: true }),
+        supabase.from('races').select('*', { count: 'exact', head: true })
+      ]);
+
+      if (regErr) console.error('Error fetching registrations count:', regErr);
+      if (campErr) console.error('Error fetching campaigns count:', campErr);
+      if (pendErr) console.error('Error fetching pending count:', pendErr);
+      if (coupErr) console.error('Error fetching coupons count:', coupErr);
+      if (raceErr) console.error('Error fetching races count:', raceErr);
+
+      setCampaignStats({
+        pendingApprovals: pendingCount || 0,
+        totalCampaigns: campaignCount || 0,
+        totalRegistrations: regCount || 0,
+        totalCoupons: couponCount || 0,
+        totalRaces: raceCount || 0
+      });
+
+    } catch (err) {
+      console.error('Final fetchData error:', err);
     } finally {
       setLoading(false);
     }
@@ -206,13 +232,13 @@ export default function DashboardLayout({ children }) {
   const activeRaces = races.filter(r => r.is_active).length;
 
   const sidebarStats = {
-    registrations: allRegistrations.length,
-    donations: campaignDonations.length,
+    registrations: campaignStats.totalRegistrations || 0,
+    donations: campaignStats.totalCampaigns || 0,
     pendingApprovals: campaignStats.pendingApprovals || 0,
-    coupons: coupons.length,
-    races: races.length,
-    activeCoupons,
-    activeRaces,
+    coupons: campaignStats.totalCoupons || 0,
+    races: campaignStats.totalRaces || 0,
+    activeCoupons: coupons.filter(c => c.is_active).length,
+    activeRaces: races.filter(r => r.is_active).length,
   };
 
   // Loading states
