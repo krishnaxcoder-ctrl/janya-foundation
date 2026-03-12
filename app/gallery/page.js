@@ -145,14 +145,14 @@ export default function GalleryPage() {
         {/* Gallery Grid */}
         <section className="relative py-8 sm:py-12 bg-white">
           <div className="relative w-full px-2 sm:px-4 lg:px-6">
-            <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5 3xl:columns-6 gap-3 sm:gap-4">
+            <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 sm:gap-4">
               {galleryImages.map((src, index) => (
                 <div
                   key={src}
                   className="break-inside-avoid mb-4 sm:mb-5 group cursor-pointer"
                   onClick={() => setSelectedImage(src)}
                 >
-                  <div className="relative overflow-hidden rounded-none bg-gray-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                  <div className="relative overflow-hidden rounded-md bg-gray-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div className="relative overflow-hidden">
                       {!loadedImages[src] && (
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 min-h-[200px]">
