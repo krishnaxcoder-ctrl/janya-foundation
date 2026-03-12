@@ -7,7 +7,7 @@ export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/dashboard/registrations');
+    router.replace('/dashboard/start-fundraiser');
   }, [router]);
 
   return (

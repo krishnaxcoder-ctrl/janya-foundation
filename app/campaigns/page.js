@@ -9,53 +9,9 @@ import Footer from '../components/Footer';
 const DonationForm = dynamic(() => import('../components/DonationForm'), { ssr: false });
 const CampaignSubmissionForm = dynamic(() => import('../components/CampaignSubmissionForm'), { ssr: false });
 
-const CAMPAIGNS = [
-  {
-    id: 1,
-    title: "Urgent: N8 Cochlear Processor Upgrade for 7-year-old Suyash",
-    description: "Suyash Bedekar needs an urgent upgrade to the N8 Cochlear Processor to continue his education. Production for his current device has stopped, making this upgrade critical for his hearing and future.",
-    image: "/child.png",
-    raised: 154200,
-    goal: 1396500,
-    percentage: 11,
-    category: "Medical Help",
-    donors: 86
-  },
-  {
-    id: 2,
-    title: "Protect a Life: HPV Vaccinations for Underprivileged Women",
-    description: "Every donation helps fund critical HPV vaccinations for underprivileged women, protecting them from the risk of cervical cancer and ensuring a healthier future.",
-    image: "https://images.unsplash.com/photo-1644822861254-c99d0022ab70?q=80&w=1170&auto=format&fit=crop&q=80",
-    raised: 2200,
-    goal: 500000,
-    percentage: 0.44,
-    category: "Cervical Cancer Awareness",
-    donors: 4
-  },
-  {
-    id: 3,
-    title: "Fight Against Leukemia: Support Darshana's Life-Saving Treatment",
-    description: "Mrs. Darshana Padwal, 53, is fighting Acute Myeloid Leukemia (AML). She needs urgent medical intervention and supportive care to overcome this critical battle for her life.",
-    image: "/800000/WhatsApp Image 2026-03-03 at 8.17.19 PM (1).jpeg",
-    raised: 45000,
-    goal: 800000,
-    percentage: 5,
-    category: "Medical Relief",
-    donors: 12
-  },
-  {
-    id: 4,
-    title: "Critical Care: Urgent Medical Support for an Elderly Mother",
-    description: "This elderly patient is currently in intensive care, requiring specialized medical procedures and round-the-clock monitoring to recover from a severe health crisis.",
-    image: "/1200000/WhatsApp Image 2026-03-03 at 8.16.40 PM.jpeg",
-    raised: 120000,
-    goal: 1200000,
-    percentage: 10,
-    category: "Intensive Care",
-    donors: 28
-  }
-];
+import { supabase } from '@/lib/supabase';
 
+// Static stats for the header
 const STATS = [
   { value: '1000+', label: 'Lives Impacted' },
   { value: '500+', label: 'Monthly Meals' },
@@ -134,11 +90,47 @@ CampaignCard.displayName = 'CampaignCard';
 export default function CampaignsPage() {
   const [showDonationForm, setShowDonationForm] = useState(false);
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
+  const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
+    fetchCampaigns();
   }, []);
+
+  const fetchCampaigns = async () => {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('campaigns')
+        .select('*')
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      
+      // Transform Supabase data to match the UI component's expectations
+      const transformed = (data || []).map(c => ({
+        id: c.id,
+        title: c.title,
+        description: c.description,
+        image: c.image_url,
+        raised: c.raised_amount || 0,
+        goal: c.goal_amount,
+        percentage: Math.round(((c.raised_amount || 0) / c.goal_amount) * 100),
+        category: c.category,
+        donors: c.donors_count || 0
+      }));
+
+      setCampaigns(transformed);
+    } catch (err) {
+      console.error('Error fetching campaigns:', err);
+      setCampaigns([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-pink-100 selection:text-[#e90074]">
@@ -198,9 +190,19 @@ export default function CampaignsPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-gray-100">
-            {CAMPAIGNS.map((campaign) => (
-              <CampaignCard key={campaign.id} campaign={campaign} onDonate={() => setShowDonationForm(true)} />
-            ))}
+            {loading ? (
+              <div className="col-span-3 py-20 text-center text-gray-400 font-medium">
+                Loading campaigns...
+              </div>
+            ) : campaigns.length === 0 ? (
+              <div className="col-span-3 py-20 text-center text-gray-400 font-medium">
+                No active campaigns found. Check back later or start your own!
+              </div>
+            ) : (
+              campaigns.map((campaign) => (
+                <CampaignCard key={campaign.id} campaign={campaign} onDonate={() => setShowDonationForm(true)} />
+              ))
+            )}
           </div>
 
           {/* Bottom Action Bar */}

@@ -45,8 +45,10 @@ function DashboardHeader({ stats, onLogout }) {
   const router = useRouter();
 
   const navItems = [
+    { id: 'start-fundraiser', path: '/dashboard/start-fundraiser', label: 'New Fundraiser', icon: Icons.plus, count: 0, color: 'bg-green-500' },
     { id: 'registrations', path: '/dashboard/registrations', label: 'Registrations', icon: Icons.users, count: stats.registrations, color: 'bg-blue-500' },
-    { id: 'campaign', path: '/dashboard/campaign', label: 'Campaign', icon: Icons.heart, count: stats.donations, color: 'bg-pink-500' },
+    { id: 'campaign', path: '/dashboard/campaign', label: 'Campaigns', icon: Icons.heart, count: stats.donations, color: 'bg-pink-500' },
+    { id: 'approvals', path: '/dashboard/approvals', label: 'Approvals', icon: Icons.refresh, count: stats.pendingApprovals || 0, color: 'bg-orange-500' },
     { id: 'coupons', path: '/dashboard/coupons', label: 'Coupons', icon: Icons.ticket, count: stats.coupons, color: 'bg-amber-500' },
     { id: 'races', path: '/dashboard/races', label: 'Races', icon: Icons.flag, count: stats.races, color: 'bg-purple-500' },
   ];
@@ -107,7 +109,7 @@ export default function DashboardLayout({ children }) {
   const [coupons, setCoupons] = useState([]);
   const [races, setRaces] = useState([]);
   const [campaignDonations, setCampaignDonations] = useState([]);
-  const [campaignStats, setCampaignStats] = useState({ totalRaised: 0, donorCount: 0, goal: 500000 });
+  const [campaignStats, setCampaignStats] = useState({ totalRaised: 0, donorCount: 0, goal: 500000, pendingApprovals: 0 });
   const [loading, setLoading] = useState(false);
 
 
@@ -123,7 +125,7 @@ export default function DashboardLayout({ children }) {
   // Redirect /dashboard to /dashboard/registrations
   useEffect(() => {
     if (isLoggedIn && pathname === '/dashboard') {
-      router.replace('/dashboard/registrations');
+      router.replace('/dashboard/start-fundraiser');
     }
   }, [isLoggedIn, pathname, router]);
 
@@ -178,7 +180,17 @@ export default function DashboardLayout({ children }) {
       if (racesData.success) setRaces(racesData.races || []);
       if (campaignData.success) {
         setCampaignDonations(campaignData.donations || []);
-        setCampaignStats(campaignData.stats || { totalRaised: 0, donorCount: 0, goal: 500000 });
+        
+        // Fetch pending approvals count from Supabase
+        const { count, error: countError } = await supabase
+          .from('campaigns')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'pending');
+        
+        setCampaignStats({
+          ...(campaignData.stats || { totalRaised: 0, donorCount: 0, goal: 500000 }),
+          pendingApprovals: count || 0
+        });
       }
     } catch {
       // Handle error silently
@@ -196,6 +208,7 @@ export default function DashboardLayout({ children }) {
   const sidebarStats = {
     registrations: allRegistrations.length,
     donations: campaignDonations.length,
+    pendingApprovals: campaignStats.pendingApprovals || 0,
     coupons: coupons.length,
     races: races.length,
     activeCoupons,
