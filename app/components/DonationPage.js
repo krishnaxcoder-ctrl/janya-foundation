@@ -253,11 +253,10 @@ export default function DonationPage() {
             Janya Foundation is a registered NGO dedicated to transforming lives through healthcare, education, and women empowerment programs. We work tirelessly to create sustainable change in underserved communities across India.
           </p>
 
-          {/* Buttons */}
-          <div className="grid grid-cols-2 sm:flex sm:flex-row gap-3 mb-10 md:mb-16">
+          <div className="flex flex-col sm:flex-row gap-3 mb-10 md:mb-16">
             <button
               onClick={() => setShowDonationForm(true)}
-              className="group inline-flex items-center justify-center gap-2 px-4 sm:px-7 py-3 sm:py-3.5 text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all shadow-lg"
+              className="group inline-flex items-center justify-center gap-2 px-4 sm:px-7 py-3 sm:py-3.5 text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all shadow-lg w-full sm:w-auto"
               style={{ backgroundColor: "#FF4191" }}
             >
               Donate Now
@@ -265,12 +264,6 @@ export default function DonationPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
-            <Link
-              href="/marathon"
-              className="inline-flex items-center justify-center gap-2 px-4 sm:px-7 py-3 sm:py-3.5 bg-white text-gray-700 text-sm font-semibold rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
-            >
-              Join Marathon
-            </Link>
           </div>
 
           {/* Feature Cards */}
@@ -596,10 +589,10 @@ export default function DonationPage() {
         <Gallery />
       </section>
 
-      {/* Volunteer Section */}
-      <section id="volunteer">
+      {/* Volunteer Section - Removed from homepage per user request */}
+      {/* <section id="volunteer">
         <VolunteerSection />
-      </section>
+      </section> */}
 
       {/* Floating donation button */}
       <FloatingDonateButton onClick={() => setShowDonationForm(true)} />

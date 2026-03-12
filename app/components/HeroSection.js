@@ -58,66 +58,85 @@ export default function HeroSection({ setShowDonationForm }) {
       />
 
       {/* Main Content - 70vh */}
-      <div className="relative mx-auto flex flex-col lg:flex-row max-w-[96rem] min-h-[70vh] pt-12 sm:pt-14">
+      <div className="relative mx-auto flex flex-col lg:flex-row max-w-[96rem] min-h-screen pt-12 sm:pt-14">
         {/* Left — Text content (50%) */}
-        <div className="flex items-center px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-0 xl:pl-16 w-full lg:w-1/2">
-          <div className="w-full max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-4 py-1.5">
-              <svg className="h-4 w-4 text-pink-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-              <span className="text-xs font-semibold uppercase tracking-wider text-pink-700">Trusted by 1,000+ supporters</span>
+        <div className="flex items-center px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-0 xl:pl-16 w-full lg:w-1/2 relative">
+          <div className="w-full max-w-2xl relative z-10">
+            {/* Elegant Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-pink-100 bg-white/50 backdrop-blur-sm px-4 py-1.5 shadow-sm mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+              </span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-pink-700">Trusted by 1,000+ supporters</span>
             </div>
 
-            <h1 className="mt-6 font-heading text-4xl font-normal tracking-tight text-gray-900 sm:text-5xl lg:text-[44px] lg:leading-[1.1]">
+            {/* Premium Heading */}
+            <h1 className="font-heading text-5xl sm:text-6xl lg:text-[68px] font-normal tracking-tight text-gray-900 leading-[1.05]">
               Empowering{' '}
-              <span className="font-medium italic text-pink-600">Women</span> &{' '}
-              <span className="font-medium italic text-pink-600">Children</span>{' '}
+              <span className="font-extrabold text-pink-600">Women</span> <br className="hidden sm:block" />
+              & <span className="font-extrabold text-pink-600">Children</span>{' '}
               <br className="hidden sm:block" />
-              for a better future
+              for a <span className="relative italic font-medium">
+                better future
+                <svg className="absolute -bottom-1 left-0 w-full text-pink-200" height="6" viewBox="0 0 100 6" preserveAspectRatio="none">
+                  <path d="M0,5 Q50,0 100,5" stroke="currentColor" strokeWidth="4" fill="none" />
+                </svg>
+              </span>
             </h1>
 
-            <p className="mt-6 max-w-lg font-body text-base leading-relaxed text-gray-500 sm:text-lg">
-              Join Janya Foundation in creating lasting change through breast cancer
-              awareness, education for underprivileged children, and women&apos;s
-              empowerment programs across communities in need.
+            {/* Refined Description */}
+            <p className="mt-8 max-w-lg font-body text-lg leading-relaxed text-gray-600 sm:text-xl">
+              Join <span className="text-gray-900 font-semibold">Janya Foundation</span> in creating lasting change through breast cancer
+              awareness, education, and women&apos;s empowerment programs.
             </p>
 
-            <div className="mt-8 grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:flex-wrap sm:gap-3">
+            {/* Action Buttons */}
+            <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <button
                 onClick={() => setShowDonationForm(true)}
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-pink-600 px-4 py-2.5 sm:px-8 sm:py-3 text-sm font-semibold text-white shadow-lg shadow-pink-200/50 transition-colors hover:bg-pink-700"
+                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-lg bg-gradient-to-r from-[#FF4191] to-[#E90074] px-10 py-4.5 text-base font-extrabold text-white shadow-[0_10px_25px_-5px_rgba(255,65,145,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_35px_-10px_rgba(255,65,145,0.4)] active:scale-[0.98]"
               >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-                Donate Now
+                <div className="absolute inset-0 -translate-x-[100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-[100%]"></div>
+                <span className="relative">Donate Now</span>
+                <div className="relative flex h-7 w-7 items-center justify-center rounded-full bg-white/20 shadow-inner group-hover:rotate-45 transition-transform duration-300">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
               </button>
+
               <a
-                href="/marathon"
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-pink-500 px-4 py-2.5 sm:px-8 sm:py-3 text-sm font-semibold text-white shadow-lg shadow-pink-200/50 transition-colors hover:bg-pink-600"
+                href="https://drive.google.com/drive/folders/1kI4mBYMXsN9sTSSWmGU50bQlGtnhWVHe?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-lg border-2 border-pink-100 bg-white px-10 py-4 text-base font-extrabold text-gray-800 transition-all duration-300 hover:border-[#FF4191] hover:bg-pink-50/50 hover:text-[#FF4191] active:scale-[0.98]"
               >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                Marathon
+                <span>Marathon Images</span>
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-pink-50 text-[#FF4191] transition-all duration-300 group-hover:bg-[#FF4191] group-hover:text-white group-hover:rotate-45">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
               </a>
             </div>
 
-            {/* Trust strip */}
-            <div className="mt-6 grid grid-cols-2 gap-3 md:flex md:flex-wrap md:items-center md:gap-x-6 md:gap-y-3">
+            {/* Upgraded Trust Strip */}
+            <div className="mt-12 flex flex-wrap items-center gap-8 pt-8 border-t border-gray-100">
               {trustMarkers.map((marker) => (
-                <div key={marker.title} className="flex items-center gap-2.5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-pink-50 text-pink-600 ring-1 ring-pink-100">
+                <div key={marker.title} className="flex items-center gap-4 group">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-pink-50 text-pink-600 group-hover:bg-pink-600 group-hover:text-white transition-all duration-300">
                     {marker.icon}
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">{marker.title}</p>
-                    <p className="text-xs text-gray-500">{marker.description}</p>
+                    <p className="text-sm font-bold text-gray-900 uppercase tracking-wide">{marker.title}</p>
+                    <p className="text-xs text-gray-500 font-medium">{marker.description}</p>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
 
           </div>
         </div>
@@ -167,7 +186,7 @@ export default function HeroSection({ setShowDonationForm }) {
                 <span className="text-sm text-white/70">{campaign.progressPercent.toFixed(1)}% funded</span>
                 <span className="text-sm text-white/70 flex items-center gap-1">
                   <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                   </svg>
                   {campaign.donorCount} donor{campaign.donorCount !== 1 ? 's' : ''}
                 </span>
@@ -182,19 +201,19 @@ export default function HeroSection({ setShowDonationForm }) {
             <div className="flex flex-wrap gap-3 mb-8 w-full">
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
                 <svg className="w-4 h-4 text-pink-300" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd"/>
+                  <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                 </svg>
                 <span className="text-sm font-medium">Save Lives</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
                 <svg className="w-4 h-4 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
                 <span className="text-sm font-medium">99% Effective</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
                 <svg className="w-4 h-4 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                 </svg>
                 <span className="text-sm font-medium">200 Women</span>
               </div>

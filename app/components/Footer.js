@@ -47,21 +47,10 @@ export default function Footer() {
 
               <div className="flex flex-col items-start md:items-end gap-2 flex-shrink-0">
                 <Link
-                  href="/marathon"
-                  className="group flex items-center gap-2.5 bg-gradient-to-r from-pink-500 to-pink-600 text-white pl-5 pr-4 py-2.5 rounded-full text-sm font-semibold hover:from-pink-600 hover:to-pink-700 transition-all shadow-lg shadow-pink-200 hover:shadow-pink-300"
-                >
-                  <span>Register for Marathon</span>
-                  <div className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                    <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </div>
-                </Link>
-                <Link
                   href={isHomePage ? "#donate" : "/#donate"}
-                  className="text-xs text-gray-400 hover:text-pink-500 transition-colors font-medium ml-1"
+                  className="group flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-8 py-2.5 rounded-full text-sm font-semibold hover:from-pink-600 hover:to-pink-700 transition-all shadow-lg shadow-pink-200 hover:shadow-pink-300"
                 >
-                  or make a donation →
+                  <span>Donate Now</span>
                 </Link>
               </div>
             </div>
@@ -95,11 +84,7 @@ export default function Footer() {
                   Gallery
                 </Link>
               </li>
-              <li>
-                <Link href="/marathon" className="text-sm text-gray-600 hover:text-pink-500 transition-colors">
-                  Marathon
-                </Link>
-              </li>
+
             </ul>
           </div>
 
