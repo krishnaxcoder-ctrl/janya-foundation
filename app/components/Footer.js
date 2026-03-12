@@ -91,7 +91,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href={isHomePage ? "#gallery" : "/#gallery"} className="text-sm text-gray-600 hover:text-pink-500 transition-colors">
+                <Link href="/gallery" className="text-sm text-gray-600 hover:text-pink-500 transition-colors">
                   Gallery
                 </Link>
               </li>
