@@ -6,7 +6,7 @@ A Next.js 16 application for Janya Foundation (NGO), providing a donation platfo
             
 ## Tech Stack          
           
-- **Framework:**  Next.js 16 (App Router, React 19)     
+- **Framework:**  Next.js 16 (App Router, React 19)      
 - **Styling:**   Tailwind CSS 
 - **Payments:** PhonePe (OAuth 2.0 + v2 Checkout API)   
 - **Database:** Supabase (PostgreSQL) 
