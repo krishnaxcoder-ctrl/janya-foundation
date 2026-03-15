@@ -10,6 +10,7 @@ import Header from './Header';
 import HeroSection from './HeroSection';
 import FloatingDonateButton from './FloatingDonateButton';
 import DonationCampaign from './DonationCampaign';
+import CampaignsSection from './CampaignsSection';
 // import DonationRaising from './Donationraising';
 
 // Stats data - defined outside component for stability
@@ -582,7 +583,8 @@ export default function DonationPage() {
       {/* Donation Campaign */}
       <DonationCampaign setShowDonationForm={setShowDonationForm} />
 
-
+      {/* All Campaigns Section */}
+      <CampaignsSection setShowDonationForm={setShowDonationForm} />
 
       {/* Gallery Section */}
       <section id="gallery">
