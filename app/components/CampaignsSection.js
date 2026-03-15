@@ -208,27 +208,16 @@ export default function CampaignsSection({ setShowDonationForm }) {
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Link
-                        href={`/campaigns/${campaign.id}`}
-                        className="flex-1 inline-flex items-center justify-center gap-2 py-4 px-6 bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white text-base font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-pink-500/25 hover:shadow-xl hover:shadow-pink-500/30 hover:-translate-y-0.5"
-                      >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd"/>
-                        </svg>
-                        Donate Now
-                      </Link>
-                      <Link
-                        href={`/campaigns/${campaign.id}`}
-                        className="inline-flex items-center justify-center gap-2 py-4 px-6 bg-gray-100 hover:bg-gray-200 text-gray-700 text-base font-semibold rounded-xl transition-all duration-300"
-                      >
-                        Learn More
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </div>
+                    {/* Action Button */}
+                    <button
+                      onClick={() => setShowDonationForm(true)}
+                      className="inline-flex items-center justify-center gap-2 py-4 px-6 bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white text-base font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-pink-500/25 hover:shadow-xl hover:shadow-pink-500/30 hover:-translate-y-0.5 cursor-pointer"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd"/>
+                      </svg>
+                      Donate Now
+                    </button>
                   </div>
                 </div>
               </div>
