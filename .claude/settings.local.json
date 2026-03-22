@@ -56,7 +56,8 @@
       "mcp__supabase__search_docs",
       "mcp__supabase__list_extensions",
       "mcp__supabase__list_storage_buckets",
-      "mcp__chrome-devtools__navigate_page"
+      "mcp__chrome-devtools__navigate_page",
+      "Bash(del \"C:\\\\Users\\\\Krishna\\\\Desktop\\\\New folder\\\\janya-foundation\\\\app\\\\components\\\\prizepool-section.js\")"
     ],
     "deny": [],
     "ask": []
