@@ -54,7 +54,8 @@
       "Bash(dir \"C:\\\\Users\\\\Krishna\\\\razorpaydonation\\\\public\\\\galleryimages\" /b)",
       "Bash(powershell -Command:*)",
       "mcp__supabase__search_docs",
-      "mcp__supabase__list_extensions"
+      "mcp__supabase__list_extensions",
+      "mcp__supabase__list_storage_buckets"
     ],
     "deny": [],
     "ask": []
