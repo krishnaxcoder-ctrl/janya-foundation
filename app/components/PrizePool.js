@@ -1,8 +1,11 @@
 'use client';
 
-import Link from 'next/link';
+import { useState } from 'react';
+import PrizeClaimForm from './PrizeClaimForm';
 
 export default function PrizePool() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <section className="relative pt-20 pb-24 overflow-hidden">
       {/* Background Elements */}
@@ -83,8 +86,8 @@ export default function PrizePool() {
           </p>
 
           {/* CTA Button */}
-          <Link
-            href="/prize-claim"
+          <button
+            onClick={() => setShowForm(true)}
             className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-amber-600 via-orange-600 to-rose-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -95,7 +98,7 @@ export default function PrizePool() {
             <svg className="relative w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </Link>
+          </button>
 
           {/* Trust Indicators */}
           <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-gray-500">
@@ -120,6 +123,9 @@ export default function PrizePool() {
           </div>
         </div>
       </div>
+
+      {/* Prize Claim Form Modal */}
+      {showForm && <PrizeClaimForm onClose={() => setShowForm(false)} />}
     </section>
   );
 }
