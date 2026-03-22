@@ -153,9 +153,15 @@ export async function POST(request) {
     }
 
     // Send email notifications
+    let emailStatus = { claimant: null, admin: null, errors: [] };
+
     try {
-      if (process.env.RESEND_API_KEY) {
+      if (!process.env.RESEND_API_KEY) {
+        console.error('RESEND_API_KEY is not set');
+        emailStatus.errors.push('RESEND_API_KEY not configured');
+      } else {
         const resend = new Resend(process.env.RESEND_API_KEY);
+        console.log('Resend initialized, sending emails...');
         const adminEmail = process.env.ADMIN_EMAIL || 'janyafoundation.04@gmail.com';
 
         // Email to Admin/Owner
@@ -306,16 +312,19 @@ export async function POST(request) {
 
         // Send email to claimant first
         try {
-          await resend.emails.send({
+          console.log('Sending claimant email to:', email);
+          const claimantResult = await resend.emails.send({
             from: 'Janya Foundation <noreply@janyafoundation.in>',
             replyTo: 'janyafoundation.04@gmail.com',
             to: email,
             subject: `Prize Claim Received - ${claimId}`,
             html: claimantEmailContent,
           });
-          console.log('Claimant email sent successfully');
+          console.log('Claimant email result:', claimantResult);
+          emailStatus.claimant = claimantResult.data?.id || 'sent';
         } catch (err) {
-          console.error('Claimant email error:', err.message);
+          console.error('Claimant email error:', err);
+          emailStatus.errors.push(`Claimant email failed: ${err.message}`);
         }
 
         // Add delay to avoid rate limiting
@@ -323,27 +332,32 @@ export async function POST(request) {
 
         // Send email to admin/owner
         try {
-          await resend.emails.send({
+          const adminRecipients = [adminEmail, 'janyafoundation.04@gmail.com'].filter((e, i, arr) => arr.indexOf(e) === i);
+          console.log('Sending admin email to:', adminRecipients);
+          const adminResult = await resend.emails.send({
             from: 'Janya Foundation <noreply@janyafoundation.in>',
             replyTo: email,
-            to: [adminEmail, 'janyafoundation.04@gmail.com'].filter((e, i, arr) => arr.indexOf(e) === i),
-            subject: `🏆 New Prize Claim - ${fullName} (${raceCategoryLabel})`,
+            to: adminRecipients,
+            subject: `New Prize Claim - ${fullName} (${raceCategoryLabel})`,
             html: adminEmailContent,
           });
-          console.log('Admin email sent successfully');
+          console.log('Admin email result:', adminResult);
+          emailStatus.admin = adminResult.data?.id || 'sent';
         } catch (err) {
-          console.error('Admin email error:', err.message);
+          console.error('Admin email error:', err);
+          emailStatus.errors.push(`Admin email failed: ${err.message}`);
         }
       }
     } catch (emailError) {
       console.error('Email error:', emailError);
-      // Don't fail the request if email fails
+      emailStatus.errors.push(`General email error: ${emailError.message}`);
     }
 
     return NextResponse.json({
       success: true,
       message: 'Prize claim submitted successfully',
       claimId: claimId,
+      emailStatus: emailStatus,
     });
   } catch (error) {
     console.error('Prize claim error:', error);
