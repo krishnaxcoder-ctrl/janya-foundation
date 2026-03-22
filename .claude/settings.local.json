@@ -55,7 +55,8 @@
       "Bash(powershell -Command:*)",
       "mcp__supabase__search_docs",
       "mcp__supabase__list_extensions",
-      "mcp__supabase__list_storage_buckets"
+      "mcp__supabase__list_storage_buckets",
+      "mcp__chrome-devtools__navigate_page"
     ],
     "deny": [],
     "ask": []
