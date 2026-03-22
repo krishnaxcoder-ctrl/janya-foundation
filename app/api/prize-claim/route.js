@@ -56,17 +56,59 @@ export async function POST(request) {
     const claimId = `PRIZE-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
     const timestamp = new Date().toISOString();
 
-    // Convert files to base64 for email attachments
-    const fileToBase64 = async (file) => {
+    // Upload files to Supabase Storage
+    const uploadFile = async (file, docType) => {
+      const fileExtension = file.name.split('.').pop();
+      const sanitizedName = fullName.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
+      const fileName = `${claimId}/${docType}_${sanitizedName}.${fileExtension}`;
+
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
-      return buffer.toString('base64');
+
+      const { data, error } = await supabaseAdmin.storage
+        .from('prize-documents')
+        .upload(fileName, buffer, {
+          contentType: file.type,
+          upsert: false,
+        });
+
+      if (error) {
+        console.error(`Error uploading ${docType}:`, error);
+        throw new Error(`Failed to upload ${docType}: ${error.message}`);
+      }
+
+      // Get signed URL (valid for 1 year)
+      const { data: signedUrlData, error: signedUrlError } = await supabaseAdmin.storage
+        .from('prize-documents')
+        .createSignedUrl(fileName, 60 * 60 * 24 * 365); // 1 year
+
+      if (signedUrlError) {
+        console.error(`Error getting signed URL for ${docType}:`, signedUrlError);
+        // Fallback to public URL path
+        return `prize-documents/${fileName}`;
+      }
+
+      return signedUrlData.signedUrl;
     };
 
-    // Prepare file attachments
-    const ageProofBase64 = await fileToBase64(ageProofFile);
-    const aadharBase64 = await fileToBase64(aadharCardFile);
-    const panBase64 = await fileToBase64(panCardFile);
+    // Upload all files
+    let ageProofUrl, aadharCardUrl, panCardUrl;
+
+    try {
+      console.log('Uploading age proof...');
+      ageProofUrl = await uploadFile(ageProofFile, 'age_proof');
+      console.log('Uploading aadhar card...');
+      aadharCardUrl = await uploadFile(aadharCardFile, 'aadhar_card');
+      console.log('Uploading pan card...');
+      panCardUrl = await uploadFile(panCardFile, 'pan_card');
+      console.log('All files uploaded successfully');
+    } catch (uploadError) {
+      console.error('File upload error:', uploadError);
+      return NextResponse.json(
+        { success: false, error: uploadError.message || 'Failed to upload documents. Please try again.' },
+        { status: 500 }
+      );
+    }
 
     // Get race category label
     const raceCategoryLabels = {
@@ -80,7 +122,7 @@ export async function POST(request) {
     };
     const raceCategoryLabel = raceCategoryLabels[ageCategory] || ageCategory;
 
-    // Save to database (without file URLs for now - they'll be sent via email)
+    // Save to database
     const { data, error: dbError } = await supabaseAdmin
       .from('prize_claims')
       .insert([
@@ -92,9 +134,9 @@ export async function POST(request) {
           address: address,
           race_category: ageCategory,
           age: parseInt(age),
-          age_proof_url: `Sent via email - ${ageProofFile.name}`,
-          aadhar_card_url: `Sent via email - ${aadharCardFile.name}`,
-          pan_card_url: `Sent via email - ${panCardFile.name}`,
+          age_proof_url: ageProofUrl,
+          aadhar_card_url: aadharCardUrl,
+          pan_card_url: panCardUrl,
           status: 'pending',
           created_at: timestamp,
         },
@@ -110,13 +152,13 @@ export async function POST(request) {
       );
     }
 
-    // Send email notifications with attachments
+    // Send email notifications
     try {
       if (process.env.RESEND_API_KEY) {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const adminEmail = process.env.ADMIN_EMAIL || 'janyafoundation.04@gmail.com';
 
-        // Email to Admin/Owner with attachments
+        // Email to Admin/Owner
         const adminEmailContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(to right, #ec4899, #f472b6); padding: 20px; text-align: center;">
@@ -125,7 +167,7 @@ export async function POST(request) {
             <div style="padding: 20px; background: #f9fafb;">
               <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
                 <p style="color: #92400e; margin: 0; font-weight: bold;">
-                  ⚠️ Action Required: Please verify the attached documents and process the prize money.
+                  ⚠️ Action Required: Please verify the documents and process the prize money.
                 </p>
               </div>
 
@@ -161,17 +203,32 @@ export async function POST(request) {
                 </tr>
               </table>
 
-              <h2 style="color: #1f2937; border-bottom: 2px solid #ec4899; padding-bottom: 10px; margin-top: 20px;">Attached Documents</h2>
-              <ul style="color: #4b5563; padding-left: 20px;">
-                <li><strong>Age Proof:</strong> ${ageProofFile.name}</li>
-                <li><strong>Aadhar Card:</strong> ${aadharCardFile.name}</li>
-                <li><strong>PAN Card:</strong> ${panCardFile.name}</li>
-              </ul>
+              <h2 style="color: #1f2937; border-bottom: 2px solid #ec4899; padding-bottom: 10px; margin-top: 20px;">Uploaded Documents</h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">Age Proof:</td>
+                  <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">
+                    <a href="${ageProofUrl}" style="color: #3b82f6; text-decoration: underline;" target="_blank">View Document</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">Aadhar Card:</td>
+                  <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">
+                    <a href="${aadharCardUrl}" style="color: #3b82f6; text-decoration: underline;" target="_blank">View Document</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">PAN Card:</td>
+                  <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">
+                    <a href="${panCardUrl}" style="color: #3b82f6; text-decoration: underline;" target="_blank">View Document</a>
+                  </td>
+                </tr>
+              </table>
 
               <div style="background: #dbeafe; border: 1px solid #3b82f6; border-radius: 8px; padding: 15px; margin-top: 20px;">
                 <p style="color: #1e40af; margin: 0; font-size: 14px;">
                   <strong>Next Steps:</strong><br/>
-                  1. Download and verify the attached documents<br/>
+                  1. Click the links above to view/download the documents<br/>
                   2. Cross-check with marathon registration records<br/>
                   3. Process the prize money within 60-70 working days
                 </p>
@@ -264,7 +321,7 @@ export async function POST(request) {
         // Add delay to avoid rate limiting
         await new Promise(resolve => setTimeout(resolve, 2000));
 
-        // Send email to admin/owner with attachments
+        // Send email to admin/owner
         try {
           await resend.emails.send({
             from: 'Janya Foundation <noreply@janyafoundation.in>',
@@ -272,22 +329,8 @@ export async function POST(request) {
             to: [adminEmail, 'janyafoundation.04@gmail.com'].filter((e, i, arr) => arr.indexOf(e) === i),
             subject: `🏆 New Prize Claim - ${fullName} (${raceCategoryLabel})`,
             html: adminEmailContent,
-            attachments: [
-              {
-                filename: `AgeProof_${fullName.replace(/\s+/g, '_')}_${ageProofFile.name}`,
-                content: ageProofBase64,
-              },
-              {
-                filename: `AadharCard_${fullName.replace(/\s+/g, '_')}_${aadharCardFile.name}`,
-                content: aadharBase64,
-              },
-              {
-                filename: `PANCard_${fullName.replace(/\s+/g, '_')}_${panCardFile.name}`,
-                content: panBase64,
-              },
-            ],
           });
-          console.log('Admin email sent successfully with attachments');
+          console.log('Admin email sent successfully');
         } catch (err) {
           console.error('Admin email error:', err.message);
         }
