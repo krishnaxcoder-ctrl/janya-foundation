@@ -11,6 +11,7 @@ import HeroSection from './HeroSection';
 import FloatingDonateButton from './FloatingDonateButton';
 import DonationCampaign from './DonationCampaign';
 import CampaignsSection from './CampaignsSection';
+import PrizePool from './PrizePool';
 // import DonationRaising from './Donationraising';
 
 // Stats data - defined outside component for stability
@@ -91,7 +92,8 @@ export default function DonationPage() {
       {/* Hero Section */}
       <HeroSection setShowDonationForm={setShowDonationForm} />
 
-      
+      {/* Prize Pool Section */}
+      <PrizePool />
 
       {/* Mission & Vision */}
       <section className="py-12 md:py-24 px-4 relative overflow-hidden bg-white">
