@@ -48,6 +48,7 @@ function DashboardHeader({ stats, onLogout }) {
   const navItems = [
     { id: 'start-fundraiser', path: '/dashboard/start-fundraiser', label: 'New Fundraiser', icon: Icons.plus, count: 0, color: 'bg-green-500' },
     { id: 'registrations', path: '/dashboard/registrations', label: 'Registrations', icon: Icons.users, count: stats.registrations, color: 'bg-blue-500' },
+    { id: 'prize-claims', path: '/dashboard/prize-claims', label: 'Prize Claims', icon: Icons.money, count: stats.prizeClaims || 0, color: 'bg-yellow-500' },
     { id: 'campaign', path: '/dashboard/campaign', label: 'Campaigns', icon: Icons.heart, count: stats.donations, color: 'bg-pink-500' },
     { id: 'approvals', path: '/dashboard/approvals', label: 'Approvals', icon: Icons.refresh, count: stats.pendingApprovals || 0, color: 'bg-orange-500' },
     { id: 'coupons', path: '/dashboard/coupons', label: 'Coupons', icon: Icons.ticket, count: stats.coupons, color: 'bg-amber-500' },
@@ -195,13 +196,15 @@ export default function DashboardLayout({ children }) {
         { count: campaignCount, error: campErr },
         { count: pendingCount, error: pendErr },
         { count: couponCount, error: coupErr },
-        { count: raceCount, error: raceErr }
+        { count: raceCount, error: raceErr },
+        { count: prizeClaimsCount, error: prizeErr }
       ] = await Promise.all([
         supabase.from('marathon_registrations').select('*', { count: 'exact', head: true }),
         supabase.from('campaigns').select('*', { count: 'exact', head: true }),
         supabase.from('campaigns').select('*', { count: 'exact', head: true }).eq('status', 'pending'),
         supabase.from('coupons').select('*', { count: 'exact', head: true }),
-        supabase.from('races').select('*', { count: 'exact', head: true })
+        supabase.from('races').select('*', { count: 'exact', head: true }),
+        supabase.from('prize_claims').select('*', { count: 'exact', head: true })
       ]);
 
       if (regErr) console.error('Error fetching registrations count:', regErr);
@@ -209,13 +212,15 @@ export default function DashboardLayout({ children }) {
       if (pendErr) console.error('Error fetching pending count:', pendErr);
       if (coupErr) console.error('Error fetching coupons count:', coupErr);
       if (raceErr) console.error('Error fetching races count:', raceErr);
+      if (prizeErr) console.error('Error fetching prize claims count:', prizeErr);
 
       setCampaignStats({
         pendingApprovals: pendingCount || 0,
         totalCampaigns: campaignCount || 0,
         totalRegistrations: regCount || 0,
         totalCoupons: couponCount || 0,
-        totalRaces: raceCount || 0
+        totalRaces: raceCount || 0,
+        totalPrizeClaims: prizeClaimsCount || 0
       });
 
     } catch (err) {
@@ -237,6 +242,7 @@ export default function DashboardLayout({ children }) {
     pendingApprovals: campaignStats.pendingApprovals || 0,
     coupons: campaignStats.totalCoupons || 0,
     races: campaignStats.totalRaces || 0,
+    prizeClaims: campaignStats.totalPrizeClaims || 0,
     activeCoupons: coupons.filter(c => c.is_active).length,
     activeRaces: races.filter(r => r.is_active).length,
   };
