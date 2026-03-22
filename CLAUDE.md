@@ -25,6 +25,7 @@
 | `http://localhost:3000/registration-details` | NGO registration & DARPAN details |
 | `http://localhost:3000/route-map` | Interactive marathon route map (Leaflet) |
 | `http://localhost:3000/transactions` | Transaction lookup by single/bulk IDs |
+| `http://localhost:3000/prize-claim` | Marathon prize claim form - Winners submit documents for prize money |
 | `http://localhost:3000/dashboard` | Admin Dashboard - Login, registrations, coupons, races management |
 
 **Production URLs:**
