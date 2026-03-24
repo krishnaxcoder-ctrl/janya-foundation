@@ -26,9 +26,9 @@ const getDefaultImage = (raceId) => {
 export default function MarathonRegistration() {
   const currentYear = new Date().getFullYear();
 
-  // Redirect to external Google Drive folder per user request
+  // Redirect to homepage per user request
   useEffect(() => {
-    window.location.replace("https://drive.google.com/drive/folders/1kI4mBYMXsN9sTSSWmGU50bQlGtnhWVHe?usp=sharing");
+    window.location.replace("/");
   }, []);
 
   const [showDonationForm, setShowDonationForm] = useState(false);
