@@ -135,7 +135,7 @@ Need help? Contact us at janyafoundation.04@gmail.com or call +91 93214 96142
 
     const result = await resend.emails.send({
       from: 'Janya Foundation <noreply@janyafoundation.in>',
-      replyTo: 'janyafoundation.04@gmail.com',
+      replyTo: 'janyafoundation04@gmail.com',
       to: userEmail,
       subject: `Prize Claim Received - ${claimId}`,
       html: htmlContent,
