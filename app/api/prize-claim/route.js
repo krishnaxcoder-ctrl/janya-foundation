@@ -1,34 +1,18 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
-import Mailjet from 'node-mailjet';
-
-const mailjet = new Mailjet({
-  apiKey: '4fc115473f282d99fe564ed06de58ef6',
-  apiSecret: 'c0ec35b1cd08c7eca60a6bf3459daf2b'
-});
+import { Resend } from 'resend';
 
 const sendConfirmationEmail = async (userEmail, fullName, claimId, raceCategory) => {
   try {
-    console.log('Sending email to:', 'krishnaxcoder@gmail.com');
-    console.log('From:', 'krishnaxcoder@gmail.com');
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not set');
+      return false;
+    }
 
-    const request = mailjet
-      .post('send', { version: 'v3.1' })
-      .request({
-        Messages: [
-          {
-            From: {
-              Email: 'krishnaxcoder@gmail.com',
-              Name: 'Janya Foundation'
-            },
-            To: [
-              {
-                Email: 'krishnaxcoder@gmail.com',
-                Name: fullName
-              }
-            ],
-          Subject: `Prize Claim Received - ${claimId}`,
-          HTMLPart: `
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    console.log('Sending prize claim email to:', userEmail);
+
+    const htmlContent = `
             <!DOCTYPE html>
             <html>
             <head>
@@ -116,8 +100,9 @@ const sendConfirmationEmail = async (userEmail, fullName, claimId, raceCategory)
               </div>
             </body>
             </html>
-          `,
-          TextPart: `
+          `;
+
+    const textContent = `
 Congratulations ${fullName}!
 
 Your Prize Claim Has Been Received
@@ -146,18 +131,26 @@ Team Janya Foundation
 Need help? Contact us at janyafoundation.04@gmail.com or call +91 93214 96142
 
 © 2025 Janya Foundation. All rights reserved.
-          `,
-        },
-      ],
+`;
+
+    const result = await resend.emails.send({
+      from: 'Janya Foundation <noreply@janyafoundation.in>',
+      replyTo: 'janyafoundation.04@gmail.com',
+      to: userEmail,
+      subject: `Prize Claim Received - ${claimId}`,
+      html: htmlContent,
+      text: textContent,
     });
-    const result = await request;
-    console.log('Mailjet response status:', result.response.status);
-    console.log('Mailjet response body:', JSON.stringify(result.body, null, 2));
+
+    if (result.error) {
+      console.error('Resend error:', result.error);
+      return false;
+    }
+
+    console.log('Email sent successfully, ID:', result.data?.id);
     return true;
   } catch (error) {
-    console.error('Mailjet error statusCode:', error.statusCode);
-    console.error('Mailjet error message:', error.message);
-    console.error('Mailjet error body:', JSON.stringify(error.response?.data || error.body || error, null, 2));
+    console.error('Email sending error:', error.message);
     return false;
   }
 };
