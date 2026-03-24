@@ -1,5 +1,157 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
+import Mailjet from 'node-mailjet';
+
+const mailjet = Mailjet.apiConnect(
+  '4fc115473f282d99fe564ed06de58ef6',
+  'c0ec35b1cd08c7eca60a6bf3459daf2b'
+);
+
+const sendConfirmationEmail = async (email, fullName, claimId, raceCategory) => {
+  try {
+    const result = await mailjet.post('send', { version: 'v3.1' }).request({
+      Messages: [
+        {
+          From: {
+            Email: 'krishnaxcoder@gmail.com',
+            Name: 'Janya Foundation',
+          },
+          To: [
+            {
+              Email: 'krishnaxcoder@gmail.com',
+              Name: fullName,
+            },
+          ],
+          Subject: `Prize Claim Received - ${claimId}`,
+          HTMLPart: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            </head>
+            <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+              <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+                <!-- Header -->
+                <div style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); padding: 40px 30px; text-align: center;">
+                  <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">🏆 Congratulations!</h1>
+                  <p style="color: #fce7f3; margin: 10px 0 0 0; font-size: 16px;">Your Prize Claim Has Been Received</p>
+                </div>
+
+                <!-- Content -->
+                <div style="padding: 40px 30px;">
+                  <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                    Dear <strong>${fullName}</strong>,
+                  </p>
+
+                  <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                    Thank you for participating in the <strong>Janya Foundation Marathon 2025</strong>! We have successfully received your prize claim submission.
+                  </p>
+
+                  <!-- Claim Details Box -->
+                  <div style="background-color: #fdf2f8; border-radius: 12px; padding: 25px; margin: 25px 0;">
+                    <h3 style="color: #be185d; margin: 0 0 15px 0; font-size: 18px;">📋 Claim Details</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                      <tr>
+                        <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Claim ID:</td>
+                        <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimId}</td>
+                      </tr>
+                      <tr>
+                        <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Race Category:</td>
+                        <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${raceCategory}</td>
+                      </tr>
+                      <tr>
+                        <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Status:</td>
+                        <td style="color: #f59e0b; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">Under Review</td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <!-- Timeline Info -->
+                  <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0;">
+                    <h4 style="color: #92400e; margin: 0 0 10px 0; font-size: 16px;">⏱️ Processing Timeline</h4>
+                    <p style="color: #78350f; margin: 0; font-size: 14px; line-height: 1.6;">
+                      Your documents are now under review. The verification process will take <strong>60-70 working days</strong>. Once verified, your prize money will be credited to your bank account.
+                    </p>
+                  </div>
+
+                  <!-- What's Next -->
+                  <div style="margin: 25px 0;">
+                    <h3 style="color: #111827; margin: 0 0 15px 0; font-size: 18px;">📌 What Happens Next?</h3>
+                    <ul style="color: #374151; font-size: 14px; line-height: 1.8; padding-left: 20px; margin: 0;">
+                      <li>Our team will verify your submitted documents</li>
+                      <li>You will receive an email notification once verification is complete</li>
+                      <li>Prize money will be transferred to your bank account after successful verification</li>
+                      <li>If we need any additional information, we will contact you via email or phone</li>
+                    </ul>
+                  </div>
+
+                  <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 25px 0 0 0;">
+                    Thank you for being a part of our mission to empower women and children!
+                  </p>
+
+                  <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 20px 0 0 0;">
+                    Warm regards,<br>
+                    <strong style="color: #be185d;">Team Janya Foundation</strong>
+                  </p>
+                </div>
+
+                <!-- Footer -->
+                <div style="background-color: #f9fafb; padding: 25px 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+                  <p style="color: #6b7280; font-size: 12px; margin: 0 0 10px 0;">
+                    Need help? Contact us at <a href="mailto:janyafoundation.04@gmail.com" style="color: #ec4899;">janyafoundation.04@gmail.com</a>
+                  </p>
+                  <p style="color: #6b7280; font-size: 12px; margin: 0 0 10px 0;">
+                    Or call us at <a href="tel:+919321496142" style="color: #ec4899;">+91 93214 96142</a>
+                  </p>
+                  <p style="color: #9ca3af; font-size: 11px; margin: 15px 0 0 0;">
+                    © 2025 Janya Foundation. All rights reserved.
+                  </p>
+                </div>
+              </div>
+            </body>
+            </html>
+          `,
+          TextPart: `
+Congratulations ${fullName}!
+
+Your Prize Claim Has Been Received
+
+Thank you for participating in the Janya Foundation Marathon 2025! We have successfully received your prize claim submission.
+
+Claim Details:
+- Claim ID: ${claimId}
+- Race Category: ${raceCategory}
+- Status: Under Review
+
+Processing Timeline:
+Your documents are now under review. The verification process will take 60-70 working days. Once verified, your prize money will be credited to your bank account.
+
+What Happens Next?
+- Our team will verify your submitted documents
+- You will receive an email notification once verification is complete
+- Prize money will be transferred to your bank account after successful verification
+- If we need any additional information, we will contact you via email or phone
+
+Thank you for being a part of our mission to empower women and children!
+
+Warm regards,
+Team Janya Foundation
+
+Need help? Contact us at janyafoundation.04@gmail.com or call +91 93214 96142
+
+© 2025 Janya Foundation. All rights reserved.
+          `,
+        },
+      ],
+    });
+    console.log('Confirmation email sent successfully:', result.body);
+    return true;
+  } catch (error) {
+    console.error('Error sending confirmation email:', error);
+    return false;
+  }
+};
 
 export async function POST(request) {
   try {
@@ -139,6 +291,23 @@ export async function POST(request) {
         { status: 500 }
       );
     }
+
+    // Send confirmation email
+    const raceCategoryLabels = {
+      '5km': '5 KM Competitive',
+      '10km': '10 KM Competitive',
+      '21km': '21.1 KM Half Marathon',
+      'cause5km': '5 KM Run for Cause',
+      'cause10km': '10 KM Run for Cause',
+      '3km': '3 KM Fun Run',
+      'kidsrun': 'Kids Run',
+    };
+    const raceCategoryLabel = raceCategoryLabels[ageCategory] || ageCategory;
+
+    // Send email (don't wait for it to complete, don't fail if email fails)
+    sendConfirmationEmail(email, fullName, claimId, raceCategoryLabel)
+      .then(() => console.log('Confirmation email sent'))
+      .catch((err) => console.error('Failed to send confirmation email:', err));
 
     return NextResponse.json({
       success: true,
