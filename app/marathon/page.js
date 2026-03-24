@@ -766,7 +766,7 @@ export default function MarathonRegistration() {
           <div className="flex justify-center mb-4 sm:hidden">
             <div className="flex items-center gap-3 rounded-xl border-2 border-yellow-500 bg-yellow-50/50 pr-4 w-full">
               <div className="h-28 w-32 flex items-center justify-center bg-white rounded-lg p-1 flex-shrink-0">
-                <img src="/ammdar.jpeg" alt="Ammdar Sponsor" className="h-full w-full object-contain" />
+                <img src="/ammdar.jpeg" alt="Ammdar Supporter" className="h-full w-full object-contain" />
               </div>
               <div className="text-left">
                 <p className="text-[9px] font-bold text-amber-600 uppercase tracking-widest mb-0.5">Proudly Supported By</p>
@@ -777,29 +777,29 @@ export default function MarathonRegistration() {
 
           {/* Mobile: grid */}
           <div className="grid grid-cols-3 gap-1 sm:hidden">
-            {/* Golden Sponsors */}
+            {/* Golden Supporters */}
             <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/50 p-1.5">
-              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Title Sponsor</p>
+              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Title Supporter</p>
               <div className="h-14 flex items-center justify-center flex-1">
-                <img src="/JP Logo __1_page-0001.jpg" alt="Title Sponsor" className="h-full w-full object-contain" />
+                <img src="/JP Logo __1_page-0001.jpg" alt="Title Supporter" className="h-full w-full object-contain" />
               </div>
             </div>
             <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/50 p-1.5">
-              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Co Title Sponsor</p>
+              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Co Title Supporter</p>
               <div className="h-14 flex items-center justify-center flex-1">
-                <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Sponsor" className="h-full w-full object-contain" />
+                <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Supporter" className="h-full w-full object-contain" />
               </div>
             </div>
             <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/50 p-1.5">
-              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
               <div className="h-14 flex items-center justify-center flex-1">
-                <img src="/1.png" alt="Associate Sponsor" className="h-full w-full object-contain" />
+                <img src="/1.png" alt="Associate Supporter" className="h-full w-full object-contain" />
               </div>
             </div>
             <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/50 p-1.5">
-              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
               <div className="h-14 flex items-center justify-center flex-1">
-                <img src="/shreeji.png" alt="Associate Sponsor" className="h-full w-full object-contain" />
+                <img src="/shreeji.png" alt="Associate Supporter" className="h-full w-full object-contain" />
               </div>
             </div>
             {/* Pink Partners */}
@@ -810,9 +810,9 @@ export default function MarathonRegistration() {
               </div>
             </div>
             <div className="flex flex-col rounded-lg border border-pink-200 bg-pink-50/50 p-1.5">
-              <p className="text-[9px] font-bold text-pink-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+              <p className="text-[9px] font-bold text-pink-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
               <div className="h-14 flex items-center justify-center flex-1">
-                <img src="/janyafarmsnew.png" alt="Associate Sponsor" className="h-full w-full object-contain" />
+                <img src="/janyafarmsnew.png" alt="Associate Supporter" className="h-full w-full object-contain" />
               </div>
             </div>
             <div className="flex flex-col rounded-lg border border-pink-200 bg-pink-50/50 p-1.5">
@@ -900,36 +900,36 @@ export default function MarathonRegistration() {
             <div className="w-[20%] flex items-center justify-center">
               <div className="flex flex-col items-center justify-center rounded-xl border-2 border-yellow-500 bg-yellow-50/50 p-2 h-full">
                 <div className="flex-1 w-full flex items-center justify-center">
-                  <img src="/ammdar.jpeg" alt="Ammdar Sponsor" className="h-full w-full object-contain" />
+                  <img src="/ammdar.jpeg" alt="Ammdar Supporter" className="h-full w-full object-contain" />
                 </div>
                 <p className="text-xs font-semibold text-yellow-700 text-center mt-1.5 leading-tight">supported by<br /><span className="font-bold">Aamdar Vikrant Dada Patil</span></p>
               </div>
             </div>
             {/* Other logos - 80% */}
             <div className="w-[80%] grid grid-cols-7 gap-2">
-              {/* Golden Sponsors */}
+              {/* Golden Supporters */}
               <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/50 p-1.5">
-                <p className="text-[8px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Title Sponsor</p>
+                <p className="text-[8px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Title Supporter</p>
                 <div className="h-12 flex items-center justify-center flex-1">
-                  <img src="/JP Logo __1_page-0001.jpg" alt="Title Sponsor" className="h-full w-full object-contain" />
+                  <img src="/JP Logo __1_page-0001.jpg" alt="Title Supporter" className="h-full w-full object-contain" />
                 </div>
               </div>
               <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/50 p-1.5">
-                <p className="text-[8px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Co Title Sponsor</p>
+                <p className="text-[8px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Co Title Supporter</p>
                 <div className="h-12 flex items-center justify-center flex-1">
-                  <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Sponsor" className="h-full w-full object-contain" />
+                  <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Supporter" className="h-full w-full object-contain" />
                 </div>
               </div>
               <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/50 p-1.5">
-                <p className="text-[8px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+                <p className="text-[8px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
                 <div className="h-12 flex items-center justify-center flex-1">
-                  <img src="/1.png" alt="Associate Sponsor" className="h-full w-full object-contain" />
+                  <img src="/1.png" alt="Associate Supporter" className="h-full w-full object-contain" />
                 </div>
               </div>
               <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/50 p-1.5">
-                <p className="text-[8px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+                <p className="text-[8px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
                 <div className="h-12 flex items-center justify-center flex-1">
-                  <img src="/shreeji.png" alt="Associate Sponsor" className="h-full w-full object-contain" />
+                  <img src="/shreeji.png" alt="Associate Supporter" className="h-full w-full object-contain" />
                 </div>
               </div>
               {/* Pink Partners */}
@@ -940,9 +940,9 @@ export default function MarathonRegistration() {
                 </div>
               </div>
               <div className="flex flex-col rounded-lg border border-pink-200 bg-pink-50/50 p-1.5">
-                <p className="text-[8px] font-bold text-pink-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+                <p className="text-[8px] font-bold text-pink-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
                 <div className="h-12 flex items-center justify-center flex-1">
-                  <img src="/janyafarmsnew.png" alt="Associate Sponsor" className="h-full w-full object-contain" />
+                  <img src="/janyafarmsnew.png" alt="Associate Supporter" className="h-full w-full object-contain" />
                 </div>
               </div>
               <div className="flex flex-col rounded-lg border border-pink-200 bg-pink-50/50 p-1.5">

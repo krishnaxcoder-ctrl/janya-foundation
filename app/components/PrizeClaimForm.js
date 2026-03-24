@@ -19,6 +19,7 @@ export default function PrizeClaimForm({ onClose }) {
     address: '',
     ageCategory: '',
     age: '',
+    openCategoryPrizeMoney: '',
   });
 
   const [files, setFiles] = useState({
@@ -95,6 +96,7 @@ export default function PrizeClaimForm({ onClose }) {
       submitData.append('address', formData.address);
       submitData.append('ageCategory', formData.ageCategory);
       submitData.append('age', formData.age);
+      submitData.append('openCategoryPrizeMoney', formData.openCategoryPrizeMoney);
 
       if (files.ageProof) {
         submitData.append('ageProof', files.ageProof);
@@ -133,6 +135,7 @@ export default function PrizeClaimForm({ onClose }) {
       formData.address &&
       formData.ageCategory &&
       formData.age &&
+      formData.openCategoryPrizeMoney &&
       files.ageProof &&
       files.aadharCard &&
       files.panCard
@@ -344,6 +347,49 @@ export default function PrizeClaimForm({ onClose }) {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm text-gray-800"
                     required
                   />
+                </div>
+              </div>
+
+              {/* Open Category Prize Money */}
+              <div>
+                <label className="text-sm text-gray-700 mb-2 block font-medium">
+                  Open Category Prize Money <span className="text-red-500">*</span>
+                </label>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <label
+                    className={`flex items-center gap-3 px-4 py-3 border-2 rounded-lg cursor-pointer transition-all ${
+                      formData.openCategoryPrizeMoney === 'received'
+                        ? 'border-green-500 bg-green-50'
+                        : 'border-gray-300 hover:border-pink-400'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="openCategoryPrizeMoney"
+                      value="received"
+                      checked={formData.openCategoryPrizeMoney === 'received'}
+                      onChange={handleInputChange}
+                      className="w-4 h-4 text-green-600 focus:ring-green-500"
+                    />
+                    <span className="text-sm text-gray-700 font-medium">Received cash money</span>
+                  </label>
+                  <label
+                    className={`flex items-center gap-3 px-4 py-3 border-2 rounded-lg cursor-pointer transition-all ${
+                      formData.openCategoryPrizeMoney === 'not_received'
+                        ? 'border-orange-500 bg-orange-50'
+                        : 'border-gray-300 hover:border-pink-400'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="openCategoryPrizeMoney"
+                      value="not_received"
+                      checked={formData.openCategoryPrizeMoney === 'not_received'}
+                      onChange={handleInputChange}
+                      className="w-4 h-4 text-orange-600 focus:ring-orange-500"
+                    />
+                    <span className="text-sm text-gray-700 font-medium">Not received cash money</span>
+                  </label>
                 </div>
               </div>
 

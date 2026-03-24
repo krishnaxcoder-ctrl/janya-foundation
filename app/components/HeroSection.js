@@ -238,11 +238,11 @@ export default function HeroSection({ setShowDonationForm }) {
       {/* Bottom Partners Row */}
       <div className="relative bg-gray-50 border-t border-gray-100">
         <div className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 py-4">
-          {/* Mobile: Ammdar Sponsor */}
+          {/* Mobile: Ammdar Supporter */}
           <div className="flex justify-center mb-2 sm:hidden">
             <div className="flex items-center gap-3 rounded-xl border-2 border-yellow-500 bg-yellow-50/50 pr-4 w-full">
               <div className="h-28 w-32 flex items-center justify-center bg-white rounded-lg p-1 flex-shrink-0">
-                <img src="/ammdar.jpeg" alt="Ammdar Sponsor" className="h-full w-full object-contain" />
+                <img src="/ammdar.jpeg" alt="Ammdar Supporter" className="h-full w-full object-contain" />
               </div>
               <div className="text-left">
                 <p className="text-[9px] font-bold text-amber-600 uppercase tracking-widest mb-0.5">Proudly Supported By</p>
@@ -251,34 +251,34 @@ export default function HeroSection({ setShowDonationForm }) {
             </div>
           </div>
 
-          {/* Mobile: 2x2 Sponsors Grid with Height Difference */}
+          {/* Mobile: 2x2 Supporters Grid with Height Difference */}
           <div className="grid grid-cols-2 gap-1.5 sm:hidden mb-2">
-            {/* Title Sponsor - Tallest */}
+            {/* Title Supporter - Tallest */}
             <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/80 p-1.5">
-              <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Title Sponsor</p>
+              <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Title Supporter</p>
               <div className="h-16 flex items-center justify-center">
-                <img src="/JP Logo __1_page-0001.jpg" alt="Title Sponsor" className="h-full w-auto object-contain" />
+                <img src="/JP Logo __1_page-0001.jpg" alt="Title Supporter" className="h-full w-auto object-contain" />
               </div>
             </div>
-            {/* Co Title Sponsor - Medium */}
+            {/* Co Title Supporter - Medium */}
             <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/80 p-1.5">
-              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Co Title Sponsor</p>
+              <p className="text-[9px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Co Title Supporter</p>
               <div className="h-14 flex items-center justify-center">
-                <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Sponsor" className="h-full w-auto object-contain" />
+                <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Supporter" className="h-full w-auto object-contain" />
               </div>
             </div>
-            {/* Associate Sponsor - Smaller */}
+            {/* Associate Supporter - Smaller */}
             <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/80 p-1">
-              <p className="text-[12px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+              <p className="text-[12px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
               <div className="h-11 flex items-center justify-center">
-                <img src="/1.png" alt="Associate Sponsor" className="h-full w-auto object-contain" />
+                <img src="/1.png" alt="Associate Supporter" className="h-full w-auto object-contain" />
               </div>
             </div>
-            {/* Associate Sponsor - Smaller */}
+            {/* Associate Supporter - Smaller */}
             <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/80 p-1">
-              <p className="text-[12px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+              <p className="text-[12px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
               <div className="h-11 flex items-center justify-center">
-                <img src="/shreeji.png" alt="Associate Sponsor" className="h-full w-auto object-contain" />
+                <img src="/shreeji.png" alt="Associate Supporter" className="h-full w-auto object-contain" />
               </div>
             </div>
           </div>
@@ -292,9 +292,9 @@ export default function HeroSection({ setShowDonationForm }) {
               </div>
             </div>
             <div className="flex flex-col rounded-lg border border-pink-200 bg-pink-50/50 p-1.5">
-              <p className="text-[12px] font-bold text-pink-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+              <p className="text-[12px] font-bold text-pink-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
               <div className="h-14 flex items-center justify-center flex-1">
-                <img src="/janyafarmsnew.png" alt="Associate Sponsor" className="h-full w-full object-contain" />
+                <img src="/janyafarmsnew.png" alt="Associate Supporter" className="h-full w-full object-contain" />
               </div>
             </div>
             <div className="flex flex-col rounded-lg border border-pink-200 bg-pink-50/50 p-1.5">
@@ -376,46 +376,46 @@ export default function HeroSection({ setShowDonationForm }) {
               </div>
             </div>
           </div>
-          {/* Desktop: Sponsors Layout */}
+          {/* Desktop: Supporters Layout */}
           <div className="hidden sm:block">
-            {/* All Sponsors in Single Row including Ammdar */}
+            {/* All Supporters in Single Row including Ammdar */}
             <div className="flex items-center justify-center gap-2 mb-3">
-              {/* Ammdar Sponsor - Special Card */}
+              {/* Ammdar Supporter - Special Card */}
               <div className="flex items-center gap-4 rounded-xl border-2 border-yellow-500 bg-yellow-50/50 pr-6">
                 <div className="h-28 w-32 flex items-center justify-center bg-white rounded-lg p-2">
-                  <img src="/ammdar.jpeg" alt="Ammdar Sponsor" className="h-full w-full object-contain" />
+                  <img src="/ammdar.jpeg" alt="Ammdar Supporter" className="h-full w-full object-contain" />
                 </div>
                 <div className="text-left">
                   <p className="text-[10px] font-bold text-amber-600 uppercase tracking-widest mb-0.5">Proudly Supported By</p>
                   <p className="text-base font-bold text-gray-800 leading-tight">Aamdar Vikrant Dada Patil</p>
                 </div>
               </div>
-              {/* Title Sponsor */}
+              {/* Title Supporter */}
               <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/80 p-2 w-36 md:w-44">
-                <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Title Sponsor</p>
+                <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Title Supporter</p>
                 <div className="h-14 md:h-18 flex items-center justify-center">
-                  <img src="/JP Logo __1_page-0001.jpg" alt="Title Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/JP Logo __1_page-0001.jpg" alt="Title Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
-              {/* Co Title Sponsor */}
+              {/* Co Title Supporter */}
               <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/80 p-2 w-36 md:w-44">
-                <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Co Title Sponsor</p>
+                <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Co Title Supporter</p>
                 <div className="h-14 md:h-18 flex items-center justify-center">
-                  <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
-              {/* Associate Sponsor */}
+              {/* Associate Supporter */}
               <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/80 p-2 w-36 md:w-44">
-                <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+                <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
                 <div className="h-14 md:h-18 flex items-center justify-center">
-                  <img src="/1.png" alt="Associate Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/1.png" alt="Associate Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
-              {/* Associate Sponsor */}
+              {/* Associate Supporter */}
               <div className="flex flex-col rounded-lg border-2 border-yellow-500 bg-yellow-50/80 p-2 w-36 md:w-44">
-                <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+                <p className="text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
                 <div className="h-14 md:h-18 flex items-center justify-center">
-                  <img src="/shreeji.png" alt="Associate Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/shreeji.png" alt="Associate Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
             </div>
@@ -429,9 +429,9 @@ export default function HeroSection({ setShowDonationForm }) {
                 </div>
               </div>
               <div className="flex flex-col rounded-lg border border-pink-200 bg-pink-50/50 p-1.5">
-                <p className="text-[12px] font-bold text-pink-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+                <p className="text-[12px] font-bold text-pink-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
                 <div className="h-12 flex items-center justify-center flex-1">
-                  <img src="/janyafarmsnew.png" alt="Associate Sponsor" className="h-full w-full object-contain" />
+                  <img src="/janyafarmsnew.png" alt="Associate Supporter" className="h-full w-full object-contain" />
                 </div>
               </div>
               <div className="flex flex-col rounded-lg border border-pink-200 bg-pink-50/50 p-1.5">

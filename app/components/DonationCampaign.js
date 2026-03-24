@@ -99,34 +99,34 @@ export default function DonationCampaign({ setShowDonationForm }) {
               </div>
             </div>
 
-            {/* Sponsors - 2x2 Grid with Height Difference */}
+            {/* Supporters - 2x2 Grid with Height Difference */}
             <div className="grid grid-cols-2 gap-2 sm:gap-3 w-full max-w-md">
-              {/* Title Sponsor - Tallest */}
+              {/* Title Supporter - Tallest */}
               <div className="flex flex-col border-2 border-yellow-500 rounded-xl p-2 sm:p-3 bg-white">
-                <p className="text-[9px] sm:text-xs font-bold text-yellow-700 uppercase tracking-wide text-center mb-1">Title Sponsor</p>
+                <p className="text-[9px] sm:text-xs font-bold text-yellow-700 uppercase tracking-wide text-center mb-1">Title Supporter</p>
                 <div className="flex items-center justify-center h-14 sm:h-20 md:h-24">
-                  <img src="/JP Logo __1_page-0001.jpg" alt="Title Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/JP Logo __1_page-0001.jpg" alt="Title Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
-              {/* Co Title Sponsor - Medium */}
+              {/* Co Title Supporter - Medium */}
               <div className="flex flex-col border-2 border-yellow-500 rounded-xl p-1.5 sm:p-2.5 bg-white">
-                <p className="text-[8px] sm:text-[11px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-1">Co Title Sponsor</p>
+                <p className="text-[8px] sm:text-[11px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-1">Co Title Supporter</p>
                 <div className="flex items-center justify-center h-11 sm:h-16 md:h-20">
-                  <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/Mumbai 81083 25218 (1).png" alt="Co Title Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
-              {/* Associate Sponsor - Smaller */}
+              {/* Associate Supporter - Smaller */}
               <div className="flex flex-col border-2 border-yellow-500 rounded-xl p-1 sm:p-2 bg-white">
-                <p className="text-[7px] sm:text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+                <p className="text-[7px] sm:text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
                 <div className="flex items-center justify-center h-9 sm:h-12 md:h-14">
-                  <img src="/1.png" alt="Associate Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/1.png" alt="Associate Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
-              {/* Associate Sponsor - Smaller */}
+              {/* Associate Supporter - Smaller */}
               <div className="flex flex-col border-2 border-yellow-500 rounded-xl p-1 sm:p-2 bg-white">
-                <p className="text-[7px] sm:text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Sponsor</p>
+                <p className="text-[7px] sm:text-[10px] font-bold text-yellow-700 uppercase tracking-wide text-center mb-0.5">Associate Supporter</p>
                 <div className="flex items-center justify-center h-9 sm:h-12 md:h-14">
-                  <img src="/shreeji.png" alt="Associate Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/shreeji.png" alt="Associate Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
             </div>
@@ -146,7 +146,7 @@ export default function DonationCampaign({ setShowDonationForm }) {
 
           {/* Partners */}
           <div className="text-center">
-            <p className="text-[11px] sm:text-xs font-bold text-gray-800 uppercase tracking-wider mb-4">Sponsored & Supported by</p>
+            <p className="text-[11px] sm:text-xs font-bold text-gray-800 uppercase tracking-wider mb-4">Supported By</p>
             <div className="grid grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-4">
               <div className="flex flex-col border border-gray-200 rounded-xl p-2 bg-gray-50/50">
                 <p className="text-[9px] sm:text-[11px] font-bold text-gray-800 uppercase tracking-wide text-center mb-1">Hydration Partner</p>
@@ -161,9 +161,9 @@ export default function DonationCampaign({ setShowDonationForm }) {
                 </div>
               </div>
               <div className="flex flex-col border border-gray-200 rounded-xl p-2 bg-gray-50/50">
-                <p className="text-[9px] sm:text-[11px] font-bold text-gray-800 uppercase tracking-wide text-center mb-1">Associate Sponsor</p>
+                <p className="text-[9px] sm:text-[11px] font-bold text-gray-800 uppercase tracking-wide text-center mb-1">Associate Supporter</p>
                 <div className="flex items-center justify-center h-14 sm:h-18 flex-1">
-                  <img src="/janyafarmsnew.png" alt="Associate Sponsor" className="h-full w-auto object-contain" />
+                  <img src="/janyafarmsnew.png" alt="Associate Supporter" className="h-full w-auto object-contain" />
                 </div>
               </div>
               <div className="flex flex-col border border-gray-200 rounded-xl p-2 bg-gray-50/50">

@@ -3,22 +3,22 @@
 export default function PartnersAndHelp() {
   return (
     <>
-      {/* Sponsored Partners */}
+      {/* Supported By Partners */}
       <div className="bg-white py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
         <div className="max-w-5xl mx-auto text-center">
           <div className="mb-8">
             <p className="text-xs font-bold text-pink-500 uppercase tracking-widest mb-2">Proudly Associated With</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Our Partners</h2>
-            <p className="text-sm sm:text-base text-gray-500 w-full">Together we make a difference. Thank you to all our sponsors and partners for supporting our mission.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Supported By</h2>
+            <p className="text-sm sm:text-base text-gray-500 w-full">Together we make a difference. Thank you to all our supporters and partners for supporting our mission.</p>
           </div>
 
-          {/* Ammdar Sponsor - Above All */}
+          {/* Ammdar Supporter - Above All */}
           <div className="flex justify-center mb-6">
             <div className="relative w-full max-w-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400 rounded-2xl blur-sm opacity-50"></div>
               <div className="relative flex flex-row items-center gap-3 sm:gap-4 border-2 border-yellow-500 rounded-2xl pr-4 sm:pr-6 bg-gradient-to-br from-yellow-50 via-white to-amber-50 shadow-lg">
                 <div className="flex items-center justify-center h-28 sm:h-44 w-28 sm:w-44 flex-shrink-0 bg-white rounded-xl p-2 sm:p-3 shadow-inner">
-                  <img src="/ammdar.jpeg" alt="Ammdar Sponsor" className="h-full w-full object-contain" />
+                  <img src="/ammdar.jpeg" alt="Ammdar Supporter" className="h-full w-full object-contain" />
                 </div>
                 <div className="text-left">
                   <p className="text-[9px] sm:text-xs font-bold text-amber-600 uppercase tracking-widest mb-0.5 sm:mb-1">Proudly Supported By</p>
@@ -28,39 +28,39 @@ export default function PartnersAndHelp() {
             </div>
           </div>
 
-          {/* Title & Co Title Sponsors - Row 1 (Larger) */}
+          {/* Title & Co Title Supporters - Row 1 (Larger) */}
           <div className="grid grid-cols-2 gap-3 sm:gap-5 w-full max-w-4xl mx-auto mb-4">
             <div className="flex flex-col border-2 border-yellow-500 rounded-lg p-3 sm:p-4 bg-yellow-50/50">
-              <p className="text-xs sm:text-sm font-bold text-yellow-700 uppercase tracking-wide text-center mb-2">Title Sponsor</p>
+              <p className="text-xs sm:text-sm font-bold text-yellow-700 uppercase tracking-wide text-center mb-2">Title Supporter</p>
               <div className="flex items-center justify-center h-24 sm:h-32 md:h-40 flex-1">
-                <img alt="Title Sponsor" className="h-full w-auto object-contain" src="/JP Logo __1_page-0001.jpg" />
+                <img alt="Title Supporter" className="h-full w-auto object-contain" src="/JP Logo __1_page-0001.jpg" />
               </div>
             </div>
             <div className="flex flex-col border-2 border-yellow-500 rounded-lg p-3 sm:p-4 bg-yellow-50/50">
-              <p className="text-xs sm:text-sm font-bold text-yellow-700 uppercase tracking-wide text-center mb-2">Co Title Sponsor</p>
+              <p className="text-xs sm:text-sm font-bold text-yellow-700 uppercase tracking-wide text-center mb-2">Co Title Supporter</p>
               <div className="flex items-center justify-center h-24 sm:h-32 md:h-40 flex-1">
-                <img alt="Co Title Sponsor" className="h-full w-auto object-contain" src="/Mumbai 81083 25218 (1).png" />
+                <img alt="Co Title Supporter" className="h-full w-auto object-contain" src="/Mumbai 81083 25218 (1).png" />
               </div>
             </div>
           </div>
 
-          {/* Associate Sponsors - Row 2 (Smaller) */}
+          {/* Associate Supporters - Row 2 (Smaller) */}
           <div className="grid grid-cols-2 gap-2 sm:gap-4 w-full max-w-2xl mx-auto mb-8">
             <div className="flex flex-col border-2 border-yellow-500 rounded p-2 bg-yellow-50/50">
-              <p className="text-[10px] sm:text-xs font-bold text-yellow-700 uppercase tracking-wide text-center mb-1">Associate Sponsor</p>
+              <p className="text-[10px] sm:text-xs font-bold text-yellow-700 uppercase tracking-wide text-center mb-1">Associate Supporter</p>
               <div className="flex items-center justify-center h-16 sm:h-20 md:h-24 flex-1">
-                <img alt="Associate Sponsor" className="h-full w-auto object-contain" src="/1.png" />
+                <img alt="Associate Supporter" className="h-full w-auto object-contain" src="/1.png" />
               </div>
             </div>
             <div className="flex flex-col border-2 border-yellow-500 rounded p-2 bg-yellow-50/50">
-              <p className="text-[10px] sm:text-xs font-bold text-yellow-700 uppercase tracking-wide text-center mb-1">Associate Sponsor</p>
+              <p className="text-[10px] sm:text-xs font-bold text-yellow-700 uppercase tracking-wide text-center mb-1">Associate Supporter</p>
               <div className="flex items-center justify-center h-16 sm:h-20 md:h-24 flex-1">
-                <img alt="Associate Sponsor" className="h-full w-auto object-contain" src="/shreeji.png" />
+                <img alt="Associate Supporter" className="h-full w-auto object-contain" src="/shreeji.png" />
               </div>
             </div>
           </div>
 
-          <h3 className="text-lg font-bold text-gray-800 mb-1">Sponsored & Supported by</h3>
+          <h3 className="text-lg font-bold text-gray-800 mb-1">Supported By</h3>
           <p className="text-xs text-gray-500 mb-6">Proudly supported by our amazing partners</p>
           <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3 w-full max-w-5xl mx-auto">
             <div className="flex flex-col border border-pink-200 rounded p-2 bg-pink-50/50">
@@ -76,9 +76,9 @@ export default function PartnersAndHelp() {
               </div>
             </div>
             <div className="flex flex-col border border-pink-200 rounded p-2 bg-pink-50/50">
-              <p className="text-[10px] sm:text-xs font-bold text-pink-700 uppercase tracking-wide text-center mb-1">Associate Sponsor</p>
+              <p className="text-[10px] sm:text-xs font-bold text-pink-700 uppercase tracking-wide text-center mb-1">Associate Supporter</p>
               <div className="flex items-center justify-center h-18 md:h-22 flex-1">
-                <img alt="Associate Sponsor" className="h-full w-auto object-contain" src="/janyafarmsnew.png" />
+                <img alt="Associate Supporter" className="h-full w-auto object-contain" src="/janyafarmsnew.png" />
               </div>
             </div>
             <div className="flex flex-col border border-pink-200 rounded p-2 bg-pink-50/50">
