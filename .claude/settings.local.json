@@ -57,7 +57,9 @@
       "mcp__supabase__list_extensions",
       "mcp__supabase__list_storage_buckets",
       "mcp__chrome-devtools__navigate_page",
-      "Bash(del \"C:\\\\Users\\\\Krishna\\\\Desktop\\\\New folder\\\\janya-foundation\\\\app\\\\components\\\\prizepool-section.js\")"
+      "Bash(del \"C:\\\\Users\\\\Krishna\\\\Desktop\\\\New folder\\\\janya-foundation\\\\app\\\\components\\\\prizepool-section.js\")",
+      "WebFetch(domain:dev.mailjet.com)",
+      "WebFetch(domain:www.npmjs.com)"
     ],
     "deny": [],
     "ask": []

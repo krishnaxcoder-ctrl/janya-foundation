@@ -2,26 +2,31 @@ import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
 import Mailjet from 'node-mailjet';
 
-const mailjet = Mailjet.apiConnect(
-  '4fc115473f282d99fe564ed06de58ef6',
-  'c0ec35b1cd08c7eca60a6bf3459daf2b'
-);
+const mailjet = new Mailjet({
+  apiKey: '4fc115473f282d99fe564ed06de58ef6',
+  apiSecret: 'c0ec35b1cd08c7eca60a6bf3459daf2b'
+});
 
-const sendConfirmationEmail = async (email, fullName, claimId, raceCategory) => {
+const sendConfirmationEmail = async (userEmail, fullName, claimId, raceCategory) => {
   try {
-    const result = await mailjet.post('send', { version: 'v3.1' }).request({
-      Messages: [
-        {
-          From: {
-            Email: 'krishnaxcoder@gmail.com',
-            Name: 'Janya Foundation',
-          },
-          To: [
-            {
+    console.log('Sending email to:', 'krishnaxcoder@gmail.com');
+    console.log('From:', 'krishnaxcoder@gmail.com');
+
+    const request = mailjet
+      .post('send', { version: 'v3.1' })
+      .request({
+        Messages: [
+          {
+            From: {
               Email: 'krishnaxcoder@gmail.com',
-              Name: fullName,
+              Name: 'Janya Foundation'
             },
-          ],
+            To: [
+              {
+                Email: 'krishnaxcoder@gmail.com',
+                Name: fullName
+              }
+            ],
           Subject: `Prize Claim Received - ${claimId}`,
           HTMLPart: `
             <!DOCTYPE html>
@@ -145,10 +150,14 @@ Need help? Contact us at janyafoundation.04@gmail.com or call +91 93214 96142
         },
       ],
     });
-    console.log('Confirmation email sent successfully:', result.body);
+    const result = await request;
+    console.log('Mailjet response status:', result.response.status);
+    console.log('Mailjet response body:', JSON.stringify(result.body, null, 2));
     return true;
   } catch (error) {
-    console.error('Error sending confirmation email:', error);
+    console.error('Mailjet error statusCode:', error.statusCode);
+    console.error('Mailjet error message:', error.message);
+    console.error('Mailjet error body:', JSON.stringify(error.response?.data || error.body || error, null, 2));
     return false;
   }
 };
@@ -304,10 +313,14 @@ export async function POST(request) {
     };
     const raceCategoryLabel = raceCategoryLabels[ageCategory] || ageCategory;
 
-    // Send email (don't wait for it to complete, don't fail if email fails)
-    sendConfirmationEmail(email, fullName, claimId, raceCategoryLabel)
-      .then(() => console.log('Confirmation email sent'))
-      .catch((err) => console.error('Failed to send confirmation email:', err));
+    // Send confirmation email
+    try {
+      const emailSent = await sendConfirmationEmail(email, fullName, claimId, raceCategoryLabel);
+      console.log('Email sent status:', emailSent);
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      // Don't fail the request if email fails
+    }
 
     return NextResponse.json({
       success: true,
