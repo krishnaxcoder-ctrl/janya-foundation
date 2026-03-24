@@ -12,6 +12,7 @@ export async function POST(request) {
     const address = formData.get('address');
     const ageCategory = formData.get('ageCategory');
     const age = formData.get('age');
+    const openCategoryPrizeMoney = formData.get('openCategoryPrizeMoney');
 
     // Extract files
     const ageProofFile = formData.get('ageProof');
@@ -19,7 +20,7 @@ export async function POST(request) {
     const panCardFile = formData.get('panCard');
 
     // Validate required fields
-    if (!fullName || !phone || !email || !address || !ageCategory || !age) {
+    if (!fullName || !phone || !email || !address || !ageCategory || !age || !openCategoryPrizeMoney) {
       return NextResponse.json(
         { success: false, error: 'All fields are required' },
         { status: 400 }
@@ -120,6 +121,7 @@ export async function POST(request) {
           address: address,
           race_category: ageCategory,
           age: parseInt(age),
+          open_category_prize_money: openCategoryPrizeMoney,
           age_proof_url: ageProofUrl,
           aadhar_card_url: aadharCardUrl,
           pan_card_url: panCardUrl,

@@ -11,6 +11,7 @@ export default function PrizeClaimsPage() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [openCategoryFilter, setOpenCategoryFilter] = useState('all');
   const [selectedClaim, setSelectedClaim] = useState(null);
   const [updating, setUpdating] = useState(false);
 
@@ -38,6 +39,16 @@ export default function PrizeClaimsPage() {
     verified: 'Verified',
     rejected: 'Rejected',
     paid: 'Paid',
+  };
+
+  const openCategoryLabels = {
+    received: 'Received Cash',
+    not_received: 'Not Received',
+  };
+
+  const openCategoryColors = {
+    received: 'bg-green-100 text-green-800',
+    not_received: 'bg-orange-100 text-orange-800',
   };
 
   useEffect(() => {
@@ -87,8 +98,9 @@ export default function PrizeClaimsPage() {
       claim.claim_id?.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesStatus = statusFilter === 'all' || claim.status === statusFilter;
+    const matchesOpenCategory = openCategoryFilter === 'all' || claim.open_category_prize_money === openCategoryFilter;
 
-    return matchesSearch && matchesStatus;
+    return matchesSearch && matchesStatus && matchesOpenCategory;
   });
 
   const stats = {
@@ -160,18 +172,29 @@ export default function PrizeClaimsPage() {
                 {Icons.refresh}
               </Button>
             </div>
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full sm:w-auto px-3 py-2 border rounded-md bg-white text-sm"
-            >
-              <option value="all">All Status</option>
-              <option value="pending">Pending</option>
-              <option value="under_review">Under Review</option>
-              <option value="verified">Verified</option>
-              <option value="rejected">Rejected</option>
-              <option value="paid">Paid</option>
-            </select>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full sm:w-auto px-3 py-2 border rounded-md bg-white text-sm"
+              >
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="under_review">Under Review</option>
+                <option value="verified">Verified</option>
+                <option value="rejected">Rejected</option>
+                <option value="paid">Paid</option>
+              </select>
+              <select
+                value={openCategoryFilter}
+                onChange={(e) => setOpenCategoryFilter(e.target.value)}
+                className="w-full sm:w-auto px-3 py-2 border rounded-md bg-white text-sm"
+              >
+                <option value="all">All Open Category</option>
+                <option value="received">Received Cash</option>
+                <option value="not_received">Not Received</option>
+              </select>
+            </div>
           </div>
 
           {/* Claims List */}
@@ -207,9 +230,15 @@ export default function PrizeClaimsPage() {
                         <span className="text-gray-500 text-xs">Age</span>
                         <p className="text-gray-900">{claim.age} years</p>
                       </div>
-                      <div className="col-span-2">
+                      <div>
                         <span className="text-gray-500 text-xs">Email</span>
                         <p className="text-gray-900 truncate">{claim.email}</p>
+                      </div>
+                      <div>
+                        <span className="text-gray-500 text-xs">Open Category</span>
+                        <span className={`text-xs px-2 py-0.5 rounded-full ${openCategoryColors[claim.open_category_prize_money] || 'bg-gray-100'}`}>
+                          {openCategoryLabels[claim.open_category_prize_money] || 'N/A'}
+                        </span>
                       </div>
                     </div>
 
@@ -247,6 +276,7 @@ export default function PrizeClaimsPage() {
                       <th className="text-left p-3 font-medium">Name</th>
                       <th className="text-left p-3 font-medium">Contact</th>
                       <th className="text-left p-3 font-medium">Race</th>
+                      <th className="text-left p-3 font-medium">Open Category</th>
                       <th className="text-left p-3 font-medium">Status</th>
                       <th className="text-left p-3 font-medium">Date</th>
                       <th className="text-left p-3 font-medium">Actions</th>
@@ -269,6 +299,11 @@ export default function PrizeClaimsPage() {
                         <td className="p-3">
                           <span className="text-xs bg-gray-100 px-2 py-1 rounded">
                             {raceCategoryLabels[claim.race_category] || claim.race_category}
+                          </span>
+                        </td>
+                        <td className="p-3">
+                          <span className={`text-xs px-2 py-1 rounded-full ${openCategoryColors[claim.open_category_prize_money] || 'bg-gray-100'}`}>
+                            {openCategoryLabels[claim.open_category_prize_money] || 'N/A'}
                           </span>
                         </td>
                         <td className="p-3">
@@ -355,6 +390,12 @@ export default function PrizeClaimsPage() {
                     <div>
                       <label className="text-xs text-gray-500 block">Race Category</label>
                       <p className="text-gray-900">{raceCategoryLabels[selectedClaim.race_category] || selectedClaim.race_category}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-500 block">Open Category Prize Money</label>
+                      <span className={`text-xs px-2 py-1 rounded-full ${openCategoryColors[selectedClaim.open_category_prize_money] || 'bg-gray-100'}`}>
+                        {openCategoryLabels[selectedClaim.open_category_prize_money] || 'N/A'}
+                      </span>
                     </div>
                     <div>
                       <label className="text-xs text-gray-500 block">Submitted On</label>
