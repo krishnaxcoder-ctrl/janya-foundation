@@ -319,6 +319,221 @@ This is an automated notification from Janya Foundation Prize Claim System.
   }
 };
 
+const sendStatusUpdateEmail = async (claimData, newStatus) => {
+  try {
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not set');
+      return false;
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    console.log('Sending status update email to:', claimData.email);
+
+    // Status configurations
+    const statusConfig = {
+      under_review: {
+        title: '📋 Your Prize Claim is Under Review',
+        subtitle: 'We are reviewing your documents',
+        color: '#3b82f6', // blue
+        bgColor: '#eff6ff',
+        message: 'Your prize claim documents are currently being reviewed by our team. This process typically takes 60-70 working days.',
+        nextSteps: [
+          'Our team is verifying your submitted documents',
+          'We will contact you if any additional information is needed',
+          'You will receive an email once the review is complete',
+        ],
+      },
+      verified: {
+        title: '✅ Your Prize Claim is Verified!',
+        subtitle: 'Documents successfully verified',
+        color: '#22c55e', // green
+        bgColor: '#f0fdf4',
+        message: 'Great news! Your documents have been successfully verified. Your prize money will be processed shortly.',
+        nextSteps: [
+          'Your documents have been approved',
+          'Prize money transfer will be initiated soon',
+          'You will receive a confirmation once payment is made',
+        ],
+      },
+      paid: {
+        title: '🎉 Prize Money Transferred!',
+        subtitle: 'Payment completed successfully',
+        color: '#a855f7', // purple
+        bgColor: '#faf5ff',
+        message: 'Congratulations! Your prize money has been successfully transferred to your bank account.',
+        nextSteps: [
+          'Check your bank account for the credited amount',
+          'The transfer may take 2-3 business days to reflect',
+          'Keep this email for your records',
+        ],
+      },
+      rejected: {
+        title: '❌ Prize Claim Rejected',
+        subtitle: 'Unable to process your claim',
+        color: '#ef4444', // red
+        bgColor: '#fef2f2',
+        message: 'Unfortunately, we were unable to verify your prize claim. Please review the reason below and contact us if you have questions.',
+        nextSteps: [
+          'Review the rejection reason provided',
+          'Contact us if you believe this is an error',
+          'You may submit a new claim with correct documents',
+        ],
+      },
+    };
+
+    const config = statusConfig[newStatus];
+    if (!config) {
+      console.log('No email config for status:', newStatus);
+      return false;
+    }
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+          <!-- Header -->
+          <div style="background: ${config.color}; padding: 40px 30px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">${config.title}</h1>
+            <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">${config.subtitle}</p>
+          </div>
+
+          <!-- Content -->
+          <div style="padding: 40px 30px;">
+            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+              Dear <strong>${claimData.full_name}</strong>,
+            </p>
+
+            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+              ${config.message}
+            </p>
+
+            <!-- Claim Details Box -->
+            <div style="background-color: ${config.bgColor}; border-radius: 12px; padding: 25px; margin: 25px 0;">
+              <h3 style="color: ${config.color}; margin: 0 0 15px 0; font-size: 18px;">📋 Claim Details</h3>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Claim ID:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.claim_id}</td>
+                </tr>
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Race Category:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.race_category}</td>
+                </tr>
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Status:</td>
+                  <td style="color: ${config.color}; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${newStatus.replace('_', ' ').toUpperCase()}</td>
+                </tr>
+                ${claimData.prize_amount ? `
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Prize Amount:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">₹${claimData.prize_amount}</td>
+                </tr>
+                ` : ''}
+                ${claimData.admin_notes && newStatus === 'rejected' ? `
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Reason:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; text-align: right;">${claimData.admin_notes}</td>
+                </tr>
+                ` : ''}
+              </table>
+            </div>
+
+            <!-- What's Next -->
+            <div style="margin: 25px 0;">
+              <h3 style="color: #111827; margin: 0 0 15px 0; font-size: 18px;">📌 What's Next?</h3>
+              <ul style="color: #374151; font-size: 14px; line-height: 1.8; padding-left: 20px; margin: 0;">
+                ${config.nextSteps.map(step => `<li>${step}</li>`).join('')}
+              </ul>
+            </div>
+
+            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 25px 0 0 0;">
+              Thank you for being a part of Janya Foundation Marathon 2026!
+            </p>
+
+            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 20px 0 0 0;">
+              Warm regards,<br>
+              <strong style="color: #be185d;">Team Janya Foundation</strong>
+            </p>
+          </div>
+
+          <!-- Footer -->
+          <div style="background-color: #f9fafb; padding: 25px 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; font-size: 12px; margin: 0 0 10px 0;">
+              Need help? Contact us at <a href="mailto:janyafoundation.04@gmail.com" style="color: #ec4899;">janyafoundation.04@gmail.com</a>
+            </p>
+            <p style="color: #6b7280; font-size: 12px; margin: 0 0 10px 0;">
+              Or call us at <a href="tel:+919321496142" style="color: #ec4899;">+91 93214 96142</a>
+            </p>
+            <p style="color: #9ca3af; font-size: 11px; margin: 15px 0 0 0;">
+              © 2026 Janya Foundation. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const textContent = `
+${config.title}
+
+Dear ${claimData.full_name},
+
+${config.message}
+
+Claim Details:
+- Claim ID: ${claimData.claim_id}
+- Race Category: ${claimData.race_category}
+- Status: ${newStatus.replace('_', ' ').toUpperCase()}
+${claimData.prize_amount ? `- Prize Amount: ₹${claimData.prize_amount}` : ''}
+${claimData.admin_notes && newStatus === 'rejected' ? `- Reason: ${claimData.admin_notes}` : ''}
+
+What's Next?
+${config.nextSteps.map(step => `- ${step}`).join('\n')}
+
+Thank you for being a part of Janya Foundation Marathon 2026!
+
+Warm regards,
+Team Janya Foundation
+
+Need help? Contact us at janyafoundation.04@gmail.com or call +91 93214 96142
+
+© 2026 Janya Foundation. All rights reserved.
+`;
+
+    const statusEmojis = {
+      under_review: '📋',
+      verified: '✅',
+      paid: '🎉',
+      rejected: '❌',
+    };
+
+    const result = await resend.emails.send({
+      from: 'Janya Foundation <noreply@janyafoundation.in>',
+      replyTo: 'janyafoundation04@gmail.com',
+      to: claimData.email,
+      subject: `${statusEmojis[newStatus] || '📬'} Prize Claim Update: ${newStatus.replace('_', ' ').toUpperCase()} - ${claimData.claim_id}`,
+      html: htmlContent,
+      text: textContent,
+    });
+
+    if (result.error) {
+      console.error('Status update email error:', result.error);
+      return false;
+    }
+
+    console.log('Status update email sent, ID:', result.data?.id);
+    return true;
+  } catch (error) {
+    console.error('Status update email error:', error.message);
+    return false;
+  }
+};
+
 export async function POST(request) {
   try {
     const formData = await request.formData();
@@ -579,6 +794,17 @@ export async function PATCH(request) {
         { success: false, error: 'Failed to update prize claim' },
         { status: 500 }
       );
+    }
+
+    // Send status update email to customer if status changed
+    if (status && data) {
+      try {
+        const emailSent = await sendStatusUpdateEmail(data, status);
+        console.log('Status update email sent:', emailSent);
+      } catch (emailError) {
+        console.error('Failed to send status update email:', emailError);
+        // Don't fail the request if email fails
+      }
     }
 
     return NextResponse.json({
