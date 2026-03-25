@@ -83,7 +83,6 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
     { name: "IMPACT", href: "#impact" },
     { name: "TESTIMONIAL", href: "#testimonial" },
     { name: "GALLERY", href: "/gallery", isLink: true },
-    { name: "GATI MARATHON 2026", href: "https://drive.google.com/drive/folders/1kI4mBYMXsN9sTSSWmGU50bQlGtnhWVHe?usp=sharing", isLink: true, isExternal: true },
     { name: "CONTACT", href: "/contact", isLink: true },
   ];
 
