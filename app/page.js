@@ -3,7 +3,7 @@ import Script from 'next/script';
 
 export const metadata = {
   title: 'Janya Foundation | Official Website - Donate for Women & Children Empowerment',
-  description: 'Janya Foundation (janyafoundation.in) - Official NGO website. Donate for breast cancer awareness, education for underprivileged children, women empowerment programs. 80G tax benefits available. Join Janya Foundation Marathon 2025.',
+  description: 'Janya Foundation (janyafoundation.in) - Official NGO website. Donate for breast cancer awareness, education for underprivileged children, women empowerment programs. 80G tax benefits available. Join Janya Foundation Marathon 2026.',
   keywords: 'janyafoundation, janya foundation, Janya Foundation official, janya foundation india, janyafoundation.in, janya foundation NGO, janya foundation donate, janya foundation marathon, NGO India, donate online, women empowerment, children education, breast cancer awareness, charity India, 80G donation',
   openGraph: {
     title: 'Janya Foundation - Empowering Women & Children',

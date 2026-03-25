@@ -1,12 +1,12 @@
 import Script from 'next/script';
 
 export const metadata = {
-  title: 'Janya Foundation Marathon 2025 - Register Now | Run for a Cause',
-  description: 'Register for Janya Foundation Marathon 2025 at janyafoundation.in. Choose from 5K, 10K, 21K races or Run for Cause. Support women empowerment and children education. Early bird discounts available!',
-  keywords: 'janyafoundation marathon, janya foundation marathon, janya foundation run, marathon registration, charity run India, 5K run, 10K run, half marathon, run for cause, Janya Foundation marathon 2025, running event India, charity marathon, janyafoundation.in marathon',
+  title: 'Janya Foundation Marathon 2026 - Register Now | Run for a Cause',
+  description: 'Register for Janya Foundation Marathon 2026 at janyafoundation.in. Choose from 5K, 10K, 21K races or Run for Cause. Support women empowerment and children education. Early bird discounts available!',
+  keywords: 'janyafoundation marathon, janya foundation marathon, janya foundation run, marathon registration, charity run India, 5K run, 10K run, half marathon, run for cause, Janya Foundation marathon 2026, running event India, charity marathon, janyafoundation.in marathon',
   openGraph: {
-    title: 'Janya Foundation Marathon 2025 - Register Now',
-    description: 'Join Janya Foundation Marathon 2025! Choose your race category - 5K, 10K, 21K or Run for Cause. Support women empowerment and children education.',
+    title: 'Janya Foundation Marathon 2026 - Register Now',
+    description: 'Join Janya Foundation Marathon 2026! Choose your race category - 5K, 10K, 21K or Run for Cause. Support women empowerment and children education.',
     url: 'https://janyafoundation.in/marathon',
     siteName: 'Janya Foundation',
     images: [
@@ -14,7 +14,7 @@ export const metadata = {
         url: 'https://janyafoundation.in/marathon-qr.png',
         width: 400,
         height: 400,
-        alt: 'Janya Foundation Marathon 2025',
+        alt: 'Janya Foundation Marathon 2026',
       },
     ],
     locale: 'en_IN',
@@ -22,7 +22,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Janya Foundation Marathon 2025',
+    title: 'Janya Foundation Marathon 2026',
     description: 'Register now for 5K, 10K, 21K races at janyafoundation.in. Run for women & children empowerment!',
   },
   alternates: {
@@ -38,10 +38,10 @@ export const metadata = {
 const eventSchema = {
   "@context": "https://schema.org",
   "@type": "SportsEvent",
-  "name": "Janya Foundation Marathon 2025",
+  "name": "Janya Foundation Marathon 2026",
   "description": "Annual charity marathon organized by Janya Foundation. Choose from 5K, 10K, 21K races or Run for Cause option. All proceeds support women empowerment and children education.",
-  "startDate": "2025-08-15T06:00:00+05:30",
-  "endDate": "2025-08-15T12:00:00+05:30",
+  "startDate": "2026-03-08T06:00:00+05:30",
+  "endDate": "2026-03-08T12:00:00+05:30",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {

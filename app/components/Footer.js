@@ -184,7 +184,7 @@ export default function Footer() {
       <div className="border-t border-gray-100 bg-gray-50/50">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-6 lg:px-10 py-4 pb-20 md:pb-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-xs">
-            &copy; 2025 Janya Foundation. All rights reserved.
+            &copy; 2026 Janya Foundation. All rights reserved.
           </p>
           <div className="flex items-center gap-2.5">
             <a

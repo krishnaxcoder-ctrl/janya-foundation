@@ -34,7 +34,7 @@ const sendConfirmationEmail = async (userEmail, fullName, claimId, raceCategory)
                   </p>
 
                   <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
-                    Thank you for participating in the <strong>Janya Foundation Marathon 2025</strong>! We have successfully received your prize claim submission.
+                    Thank you for participating in the <strong>Janya Foundation Marathon 2026</strong>! We have successfully received your prize claim submission.
                   </p>
 
                   <!-- Claim Details Box -->
@@ -94,7 +94,7 @@ const sendConfirmationEmail = async (userEmail, fullName, claimId, raceCategory)
                     Or call us at <a href="tel:+919321496142" style="color: #ec4899;">+91 93214 96142</a>
                   </p>
                   <p style="color: #9ca3af; font-size: 11px; margin: 15px 0 0 0;">
-                    © 2025 Janya Foundation. All rights reserved.
+                    © 2026 Janya Foundation. All rights reserved.
                   </p>
                 </div>
               </div>
@@ -107,7 +107,7 @@ Congratulations ${fullName}!
 
 Your Prize Claim Has Been Received
 
-Thank you for participating in the Janya Foundation Marathon 2025! We have successfully received your prize claim submission.
+Thank you for participating in the Janya Foundation Marathon 2026! We have successfully received your prize claim submission.
 
 Claim Details:
 - Claim ID: ${claimId}
@@ -130,7 +130,7 @@ Team Janya Foundation
 
 Need help? Contact us at janyafoundation.04@gmail.com or call +91 93214 96142
 
-© 2025 Janya Foundation. All rights reserved.
+© 2026 Janya Foundation. All rights reserved.
 `;
 
     const result = await resend.emails.send({

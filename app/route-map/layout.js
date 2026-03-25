@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Marathon Route Map - Janya Foundation Marathon 2025',
-  description: 'View the interactive route map for Janya Foundation Marathon 2025. See start point, water stations, and finish line locations.',
+  title: 'Marathon Route Map - Janya Foundation Marathon 2026',
+  description: 'View the interactive route map for Janya Foundation Marathon 2026. See start point, water stations, and finish line locations.',
   keywords: 'marathon route, race map, running route, Janya Foundation marathon route, race course',
   openGraph: {
     title: 'Marathon Route Map - Janya Foundation',

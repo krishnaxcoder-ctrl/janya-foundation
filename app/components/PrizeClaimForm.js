@@ -207,7 +207,7 @@ export default function PrizeClaimForm({ onClose }) {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-lg font-semibold text-gray-900">Claim Your Prize</h2>
-              <p className="text-sm text-gray-500">Marathon 2025 Winners</p>
+              <p className="text-sm text-gray-500">Marathon 2026 Winners</p>
             </div>
             <button
               onClick={onClose}

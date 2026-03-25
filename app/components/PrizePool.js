@@ -58,7 +58,7 @@ export default function PrizePool() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
             </span>
-            <span className="text-sm font-semibold text-amber-700">Janya Foundation Marathon 2025</span>
+            <span className="text-sm font-semibold text-amber-700">Janya Foundation Marathon 2026</span>
           </div>
 
           {/* Main Title with Trophy */}
