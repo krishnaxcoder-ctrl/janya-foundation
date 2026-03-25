@@ -155,6 +155,170 @@ Need help? Contact us at janyafoundation.04@gmail.com or call +91 93214 96142
   }
 };
 
+const sendAdminNotificationEmail = async (claimData) => {
+  try {
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not set');
+      return false;
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const adminEmail = process.env.ADMIN_EMAIL || 'janyafoundation.04@gmail.com';
+
+    console.log('Sending admin notification email to:', adminEmail);
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+          <!-- Header -->
+          <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 40px 30px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">🏆 New Prize Claim Received</h1>
+            <p style="color: #fef3c7; margin: 10px 0 0 0; font-size: 16px;">Action Required - Review Documents</p>
+          </div>
+
+          <!-- Content -->
+          <div style="padding: 40px 30px;">
+            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+              A new prize claim has been submitted for the <strong>Janya Foundation Marathon 2026</strong>. Please review the details below.
+            </p>
+
+            <!-- Claim Details Box -->
+            <div style="background-color: #fef3c7; border-radius: 12px; padding: 25px; margin: 25px 0;">
+              <h3 style="color: #92400e; margin: 0 0 15px 0; font-size: 18px;">📋 Claim Details</h3>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Claim ID:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.claimId}</td>
+                </tr>
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Full Name:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.fullName}</td>
+                </tr>
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Email:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.email}</td>
+                </tr>
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Phone:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.phone}</td>
+                </tr>
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Age:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.age} years</td>
+                </tr>
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Race Category:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.raceCategory}</td>
+                </tr>
+                <tr>
+                  <td style="color: #6b7280; padding: 8px 0; font-size: 14px;">Prize Money Option:</td>
+                  <td style="color: #111827; padding: 8px 0; font-size: 14px; font-weight: bold; text-align: right;">${claimData.openCategoryPrizeMoney}</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Address -->
+            <div style="background-color: #f3f4f6; border-radius: 12px; padding: 20px; margin: 25px 0;">
+              <h4 style="color: #374151; margin: 0 0 10px 0; font-size: 16px;">📍 Address</h4>
+              <p style="color: #6b7280; margin: 0; font-size: 14px; line-height: 1.6;">${claimData.address}</p>
+            </div>
+
+            <!-- Documents -->
+            <div style="background-color: #ecfdf5; border-radius: 12px; padding: 20px; margin: 25px 0;">
+              <h4 style="color: #065f46; margin: 0 0 10px 0; font-size: 16px;">📄 Uploaded Documents</h4>
+              <ul style="color: #374151; font-size: 14px; line-height: 1.8; padding-left: 20px; margin: 0;">
+                <li>Age Proof Document</li>
+                <li>Aadhar Card</li>
+                <li>PAN Card</li>
+              </ul>
+              <p style="color: #6b7280; font-size: 12px; margin: 15px 0 0 0;">
+                View documents in Supabase Storage under: prize-documents/${claimData.claimId}/
+              </p>
+            </div>
+
+            <!-- Action Required -->
+            <div style="background-color: #fef2f2; border-left: 4px solid #ef4444; padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0;">
+              <h4 style="color: #991b1b; margin: 0 0 10px 0; font-size: 16px;">⚠️ Action Required</h4>
+              <p style="color: #7f1d1d; margin: 0; font-size: 14px; line-height: 1.6;">
+                Please verify the submitted documents and update the claim status within <strong>60-70 working days</strong>.
+              </p>
+            </div>
+
+            <p style="color: #374151; font-size: 14px; line-height: 1.6; margin: 25px 0 0 0;">
+              Submitted at: <strong>${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</strong>
+            </p>
+          </div>
+
+          <!-- Footer -->
+          <div style="background-color: #f9fafb; padding: 25px 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+            <p style="color: #9ca3af; font-size: 11px; margin: 0;">
+              This is an automated notification from Janya Foundation Prize Claim System.
+            </p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const textContent = `
+New Prize Claim Received - Action Required
+
+A new prize claim has been submitted for the Janya Foundation Marathon 2026.
+
+Claim Details:
+- Claim ID: ${claimData.claimId}
+- Full Name: ${claimData.fullName}
+- Email: ${claimData.email}
+- Phone: ${claimData.phone}
+- Age: ${claimData.age} years
+- Race Category: ${claimData.raceCategory}
+- Prize Money Option: ${claimData.openCategoryPrizeMoney}
+
+Address:
+${claimData.address}
+
+Uploaded Documents:
+- Age Proof Document
+- Aadhar Card
+- PAN Card
+
+Documents Location: prize-documents/${claimData.claimId}/
+
+Action Required:
+Please verify the submitted documents and update the claim status within 60-70 working days.
+
+Submitted at: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
+
+This is an automated notification from Janya Foundation Prize Claim System.
+`;
+
+    const result = await resend.emails.send({
+      from: 'Janya Foundation <noreply@janyafoundation.in>',
+      to: adminEmail,
+      subject: `🏆 New Prize Claim: ${claimData.claimId} - ${claimData.fullName}`,
+      html: htmlContent,
+      text: textContent,
+    });
+
+    if (result.error) {
+      console.error('Admin email error:', result.error);
+      return false;
+    }
+
+    console.log('Admin notification email sent, ID:', result.data?.id);
+    return true;
+  } catch (error) {
+    console.error('Admin email sending error:', error.message);
+    return false;
+  }
+};
+
 export async function POST(request) {
   try {
     const formData = await request.formData();
@@ -306,13 +470,31 @@ export async function POST(request) {
     };
     const raceCategoryLabel = raceCategoryLabels[ageCategory] || ageCategory;
 
-    // Send confirmation email
+    // Send confirmation email to participant
     try {
       const emailSent = await sendConfirmationEmail(email, fullName, claimId, raceCategoryLabel);
-      console.log('Email sent status:', emailSent);
+      console.log('Participant email sent status:', emailSent);
     } catch (emailError) {
-      console.error('Email sending failed:', emailError);
+      console.error('Participant email sending failed:', emailError);
       // Don't fail the request if email fails
+    }
+
+    // Send notification email to admin
+    try {
+      const adminEmailSent = await sendAdminNotificationEmail({
+        claimId,
+        fullName,
+        email,
+        phone,
+        age,
+        address,
+        raceCategory: raceCategoryLabel,
+        openCategoryPrizeMoney,
+      });
+      console.log('Admin email sent status:', adminEmailSent);
+    } catch (adminEmailError) {
+      console.error('Admin email sending failed:', adminEmailError);
+      // Don't fail the request if admin email fails
     }
 
     return NextResponse.json({
