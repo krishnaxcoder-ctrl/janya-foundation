@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS prize_claims (
     address TEXT NOT NULL,
     race_category VARCHAR(50) NOT NULL,
     age INTEGER NOT NULL,
+    open_category_prize_money VARCHAR(50),
     age_proof_url TEXT NOT NULL,
     aadhar_card_url TEXT NOT NULL,
     pan_card_url TEXT NOT NULL,

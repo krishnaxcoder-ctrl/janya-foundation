@@ -59,15 +59,21 @@ export default function PrizeClaimForm({ onClose }) {
   const handleFileChange = (e, fieldName) => {
     const file = e.target.files[0];
     if (file) {
-      // Validate file size (max 5MB)
+      // Validate file size (max 5MB, but recommend under 2MB for faster uploads)
       if (file.size > 5 * 1024 * 1024) {
-        setError('File size should not exceed 5MB');
+        setError('File size should not exceed 5MB. Please compress the image and try again.');
+        e.target.value = ''; // Reset the input
         return;
+      }
+      // Warning for large files
+      if (file.size > 2 * 1024 * 1024) {
+        console.warn(`Large file detected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB)`);
       }
       // Validate file type
       const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
       if (!allowedTypes.includes(file.type)) {
         setError('Only JPG, PNG, and PDF files are allowed');
+        e.target.value = ''; // Reset the input
         return;
       }
       setError('');
@@ -112,16 +118,29 @@ export default function PrizeClaimForm({ onClose }) {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        timeout: 120000, // 2 minute timeout for large file uploads
       });
 
-      if (response.data.success) {
+      if (response?.data?.success) {
         setSubmitted(true);
       } else {
-        setError(response.data.error || 'Failed to submit. Please try again.');
+        setError(response?.data?.error || 'Failed to submit. Please try again.');
       }
     } catch (err) {
       console.error('Submission error:', err);
-      setError(err.response?.data?.error || 'Failed to submit. Please try again.');
+
+      // Handle different error types
+      if (err.code === 'ECONNABORTED' || err.message?.includes('timeout')) {
+        setError('Upload timed out. Please try with smaller file sizes (under 2MB each).');
+      } else if (err.code === 'ERR_NETWORK' || !navigator.onLine) {
+        setError('Network error. Please check your internet connection and try again.');
+      } else if (err.response?.status === 413) {
+        setError('Files are too large. Please reduce file sizes and try again.');
+      } else if (err.response?.status >= 500) {
+        setError('Server error. Please try again in a few moments.');
+      } else {
+        setError(err.response?.data?.error || 'Failed to submit. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
