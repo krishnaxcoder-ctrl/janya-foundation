@@ -19,9 +19,6 @@ export default function PrizeClaimsPage() {
     '5km': '5 KM Competitive',
     '10km': '10 KM Competitive',
     '21km': '21.1 KM Half Marathon',
-    'cause5km': '5 KM Run for Cause',
-    'cause10km': '10 KM Run for Cause',
-    '3km': '3 KM Fun Run',
     'kidsrun': 'Kids Run',
   };
 
