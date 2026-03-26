@@ -42,8 +42,8 @@ export default function PrizeClaimsPage() {
   };
 
   const openCategoryLabels = {
-    received: 'Received Cash',
-    not_received: 'Not Received',
+    received: 'Received',
+    not_received: 'Not received',
   };
 
   const openCategoryColors = {
@@ -191,8 +191,8 @@ export default function PrizeClaimsPage() {
                 className="w-full sm:w-auto px-3 py-2 border rounded-md bg-white text-sm"
               >
                 <option value="all">All Open Category</option>
-                <option value="received">Received Cash</option>
-                <option value="not_received">Not Received</option>
+                <option value="received">Received</option>
+                <option value="not_received">Not received</option>
               </select>
             </div>
           </div>

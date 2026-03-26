@@ -42,9 +42,6 @@ export default function PrizeClaimForm({ onClose }) {
     { id: '5km', label: '5 KM Competitive' },
     { id: '10km', label: '10 KM Competitive' },
     { id: '21km', label: '21.1 KM Half Marathon' },
-    { id: 'cause5km', label: '5 KM Run for Cause' },
-    { id: 'cause10km', label: '10 KM Run for Cause' },
-    { id: '3km', label: '3 KM Fun Run' },
     { id: 'kidsrun', label: 'Kids Run' },
   ];
 
