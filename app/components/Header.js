@@ -398,9 +398,6 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
           rel="noopener noreferrer"
           className="flex-1 bg-gradient-to-r from-[#374342] to-[#2D3B3A] text-white px-3 py-3 rounded-lg font-semibold shadow-sm active:scale-95 transition-all duration-300 text-sm flex items-center justify-center space-x-1.5"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
           <span>Gati Marathon 2026</span>
         </a>
         <button
