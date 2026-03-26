@@ -390,7 +390,7 @@ export default function PrizeClaimForm({ onClose }) {
                       onChange={handleInputChange}
                       className="w-4 h-4 text-green-600 focus:ring-green-500"
                     />
-                    <span className="text-sm text-gray-700 font-medium">Received cash money</span>
+                    <span className="text-sm text-gray-700 font-medium">Received</span>
                   </label>
                   <label
                     className={`flex items-center gap-3 px-4 py-3 border-2 rounded-lg cursor-pointer transition-all ${
@@ -407,7 +407,7 @@ export default function PrizeClaimForm({ onClose }) {
                       onChange={handleInputChange}
                       className="w-4 h-4 text-orange-600 focus:ring-orange-500"
                     />
-                    <span className="text-sm text-gray-700 font-medium">Not received cash money</span>
+                    <span className="text-sm text-gray-700 font-medium">Not received</span>
                   </label>
                 </div>
               </div>
