@@ -29,7 +29,10 @@ export default function Page() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative max-w-7xl mx-auto pt-20 md:pt-28 pb-20 md:pb-28 border-l border-r border-gray-200">
+      <section
+        className="relative max-w-7xl mx-auto pt-20 md:pt-28 pb-20 md:pb-28 border-l border-r border-gray-200 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/bg.jpg')" }}
+      >
         <div className=" mx-auto px-6 lg:px-12 relative z-10 ">
           <h1 className="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] font-medium tracking-[-0.02em] text-gray-900 leading-[1.1]">
             Intelligent AI Bot Assistant
@@ -42,11 +45,14 @@ export default function Page() {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 h-12 px-4 rounded-sm border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-            />
+            <div className="relative flex-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-gray-400" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full h-12 pl-12 pr-4 rounded-sm border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+              />
+            </div>
             <Button className="rounded-sm bg-gray-900 text-white hover:bg-gray-800 h-12 w-12 p-0">
               <ArrowRight className="size-5" />
             </Button>
