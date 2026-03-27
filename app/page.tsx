@@ -43,44 +43,6 @@ export default function Page() {
 
       </section>
 
-      {/* Features Section */}
-      <section className="relative z-10 px-6 lg:px-12 pb-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200/60 p-8 md:p-14 border border-gray-100">
-            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-gray-200 text-sm text-gray-600 mb-8">
-                  <span className="size-2 rounded-full bg-gray-900"></span>
-                  AI-Powered Automation
-                </div>
-
-                <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-medium tracking-[-0.02em] text-gray-900 leading-[1.15]">
-                  Transforming Communication
-                  <br />
-                  with Smart AI Assistance
-                </h2>
-
-                <p className="mt-6 text-gray-500 text-base md:text-lg leading-relaxed">
-                  Our AI Bot Assistant combines natural language processing, machine learning,
-                  and contextual understanding to deliver accurate, real-time responses across
-                  multiple channels.
-                </p>
-
-                <Button className="mt-8 rounded-full bg-gray-900 text-white hover:bg-gray-800 px-8 h-12 text-sm font-medium">
-                  Learn More
-                </Button>
-              </div>
-
-              <div className="relative order-first md:order-last">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-cyan-50 via-violet-50 to-pink-50 border border-gray-100">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-cyan-200/30 via-transparent to-pink-200/30" />
-                  <div className="absolute bottom-0 right-0 w-3/4 h-3/4 bg-gradient-to-tl from-violet-200/40 via-transparent to-transparent" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
