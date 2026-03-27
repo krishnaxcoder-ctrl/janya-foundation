@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "mcp__magic__21st_magic_component_builder"
+      "mcp__magic__21st_magic_component_builder",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "Bash(npx shadcn@latest add card badge tabs --yes)"
     ]
   }
 }
