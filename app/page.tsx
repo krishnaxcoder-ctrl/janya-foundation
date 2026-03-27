@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Play, Menu } from "lucide-react"
+import { ArrowRight, Menu, User, Zap, FileText, Users, MessageSquare, Bot, Clock, Globe, Shield, Search, Sparkles, Link, Settings } from "lucide-react"
 
 export default function Page() {
   return (
@@ -68,6 +68,384 @@ export default function Page() {
 
       </section>
 
+      {/* Features Section */}
+      <section className="max-w-7xl mx-auto border-l border-r border-gray-200 py-16 md:py-24 bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 px-4 md:px-6 lg:px-12">
+          {/* Left Sidebar */}
+          <div className="flex lg:flex-col gap-4 lg:gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0">
+            <button className="flex items-center gap-2 text-sm font-medium text-gray-900 whitespace-nowrap">
+              <span className="size-2 rounded-full bg-orange-500"></span>
+              KNOWLEDGE MANAGEMENT
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              RESPONSE AUTOMATION
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              DOCUMENT INTELLIGENCE
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              COLLABORATION
+            </button>
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-gray-900">
+                  Knowledge Management
+                </h2>
+                <p className="mt-2 text-xl md:text-2xl text-gray-400 font-light">
+                  Effortless knowledge, always accurate,
+                  <br className="hidden md:block" />
+                  always accessible
+                </p>
+              </div>
+              <a href="#" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors shrink-0">
+                Learn more <ArrowRight className="size-4" />
+              </a>
+            </div>
+
+            {/* Preview Card */}
+            <div className="rounded-2xl bg-stone-100 p-6 md:p-10 min-h-[300px] md:min-h-[400px] relative overflow-hidden">
+              {/* User Badges */}
+              <div className="absolute right-6 md:right-10 top-1/4 flex flex-col gap-3">
+                <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-orange-100">
+                  <div className="size-6 rounded-full bg-orange-100 flex items-center justify-center">
+                    <User className="size-3.5 text-orange-500" />
+                  </div>
+                  <span className="text-sm"><span className="text-orange-500 font-medium">Guest</span> Linda Johnson</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm ml-4">
+                  <div className="size-6 rounded-full bg-gray-100 flex items-center justify-center">
+                    <User className="size-3.5 text-gray-500" />
+                  </div>
+                  <span className="text-sm"><span className="text-gray-600 font-medium">Owner</span> Chris Carter</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-orange-100 ml-2">
+                  <div className="size-6 rounded-full bg-orange-100 flex items-center justify-center">
+                    <User className="size-3.5 text-orange-500" />
+                  </div>
+                  <span className="text-sm"><span className="text-orange-500 font-medium">Reviewer</span> James Wilson</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm border border-orange-100 ml-6">
+                  <div className="size-6 rounded-full bg-orange-100 flex items-center justify-center">
+                    <User className="size-3.5 text-orange-500" />
+                  </div>
+                  <span className="text-sm"><span className="text-orange-500 font-medium">Editor</span> Mary Brown</span>
+                </div>
+              </div>
+
+              {/* Bottom Description */}
+              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 max-w-md">
+                <p className="text-gray-700">
+                  <span className="font-semibold">Control ownership and access.</span>{" "}
+                  <span className="text-gray-500">Define ownership, manage visibility, and ensure the right people see and update the right content.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom Tabs */}
+            <div className="grid grid-cols-2 md:grid-cols-4 mt-0 border-t border-stone-200">
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-stone-50 transition-colors border-r border-stone-200">
+                Connect all your knowledge.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-stone-50 transition-colors border-r border-stone-200">
+                Automate updates and upkeep.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-stone-50 transition-colors border-r border-stone-200">
+                Translate and reuse across regions.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm bg-stone-800 text-white">
+                Control ownership and access.
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Response Automation Section */}
+      <section className="max-w-7xl mx-auto border-l border-r border-gray-200 py-16 md:py-24 bg-white border-t">
+        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 px-4 md:px-6 lg:px-12">
+          {/* Left Sidebar */}
+          <div className="flex lg:flex-col gap-4 lg:gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0">
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              KNOWLEDGE MANAGEMENT
+            </button>
+            <button className="flex items-center gap-2 text-sm font-medium text-gray-900 whitespace-nowrap">
+              <span className="size-2 rounded-full bg-blue-500"></span>
+              RESPONSE AUTOMATION
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              DOCUMENT INTELLIGENCE
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              COLLABORATION
+            </button>
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-gray-900">
+                  Response Automation
+                </h2>
+                <p className="mt-2 text-xl md:text-2xl text-gray-400 font-light">
+                  Instant answers, consistent quality,
+                  <br className="hidden md:block" />
+                  zero wait time
+                </p>
+              </div>
+              <a href="#" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors shrink-0">
+                Learn more <ArrowRight className="size-4" />
+              </a>
+            </div>
+
+            {/* Preview Card */}
+            <div className="rounded-2xl bg-blue-50 p-6 md:p-10 min-h-[300px] md:min-h-[400px] relative overflow-hidden">
+              {/* Chat Bubbles */}
+              <div className="absolute right-6 md:right-10 top-1/4 flex flex-col gap-3 max-w-xs">
+                <div className="flex items-start gap-2 bg-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm border border-blue-100">
+                  <Bot className="size-5 text-blue-500 shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-700">How can I help you today?</span>
+                </div>
+                <div className="flex items-start gap-2 bg-blue-500 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm ml-8">
+                  <span className="text-sm text-white">I need to reset my password</span>
+                </div>
+                <div className="flex items-start gap-2 bg-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm border border-blue-100">
+                  <Bot className="size-5 text-blue-500 shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-700">I'll send a reset link to your email right away!</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-blue-500 ml-2">
+                  <Clock className="size-3" />
+                  Response time: 0.3s
+                </div>
+              </div>
+
+              {/* Bottom Description */}
+              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 max-w-md">
+                <p className="text-gray-700">
+                  <span className="font-semibold">AI-powered instant responses.</span>{" "}
+                  <span className="text-gray-500">Deliver accurate answers in milliseconds with intelligent automation that learns and improves over time.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom Tabs */}
+            <div className="grid grid-cols-2 md:grid-cols-4 mt-0 border-t border-blue-100">
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-blue-50 transition-colors border-r border-blue-100">
+                Smart routing and escalation.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm bg-blue-600 text-white">
+                Instant AI responses.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-blue-50 transition-colors border-r border-blue-100">
+                Multi-channel support.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-blue-50 transition-colors">
+                Sentiment analysis.
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Document Intelligence Section */}
+      <section className="max-w-7xl mx-auto border-l border-r border-gray-200 py-16 md:py-24 bg-white border-t">
+        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 px-4 md:px-6 lg:px-12">
+          {/* Left Sidebar */}
+          <div className="flex lg:flex-col gap-4 lg:gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0">
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              KNOWLEDGE MANAGEMENT
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              RESPONSE AUTOMATION
+            </button>
+            <button className="flex items-center gap-2 text-sm font-medium text-gray-900 whitespace-nowrap">
+              <span className="size-2 rounded-full bg-emerald-500"></span>
+              DOCUMENT INTELLIGENCE
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              COLLABORATION
+            </button>
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-gray-900">
+                  Document Intelligence
+                </h2>
+                <p className="mt-2 text-xl md:text-2xl text-gray-400 font-light">
+                  Extract insights, automate processing,
+                  <br className="hidden md:block" />
+                  unlock your data
+                </p>
+              </div>
+              <a href="#" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors shrink-0">
+                Learn more <ArrowRight className="size-4" />
+              </a>
+            </div>
+
+            {/* Preview Card */}
+            <div className="rounded-2xl bg-emerald-50 p-6 md:p-10 min-h-[300px] md:min-h-[400px] relative overflow-hidden">
+              {/* Document Cards */}
+              <div className="absolute right-6 md:right-10 top-1/4 flex flex-col gap-3">
+                <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-emerald-100">
+                  <FileText className="size-8 text-emerald-500" />
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Invoice_2024.pdf</p>
+                    <p className="text-xs text-emerald-500">Extracted: $12,450.00</p>
+                  </div>
+                  <Sparkles className="size-4 text-emerald-400 ml-2" />
+                </div>
+                <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-emerald-100 ml-4">
+                  <FileText className="size-8 text-emerald-500" />
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Contract_Draft.docx</p>
+                    <p className="text-xs text-emerald-500">12 clauses identified</p>
+                  </div>
+                  <Sparkles className="size-4 text-emerald-400 ml-2" />
+                </div>
+                <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-emerald-100 ml-2">
+                  <Search className="size-8 text-emerald-500" />
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Smart Search</p>
+                    <p className="text-xs text-emerald-500">Find anything instantly</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Description */}
+              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 max-w-md">
+                <p className="text-gray-700">
+                  <span className="font-semibold">Intelligent document processing.</span>{" "}
+                  <span className="text-gray-500">Automatically extract, classify, and analyze documents with AI that understands context and meaning.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom Tabs */}
+            <div className="grid grid-cols-2 md:grid-cols-4 mt-0 border-t border-emerald-100">
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-emerald-50 transition-colors border-r border-emerald-100">
+                Auto-extract key data.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-emerald-50 transition-colors border-r border-emerald-100">
+                Smart classification.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm bg-emerald-600 text-white">
+                Semantic search.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-emerald-50 transition-colors">
+                Compliance checking.
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Collaboration Section */}
+      <section className="max-w-7xl mx-auto border-l border-r border-gray-200 py-16 md:py-24 bg-white border-t">
+        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 px-4 md:px-6 lg:px-12">
+          {/* Left Sidebar */}
+          <div className="flex lg:flex-col gap-4 lg:gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0">
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              KNOWLEDGE MANAGEMENT
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              RESPONSE AUTOMATION
+            </button>
+            <button className="text-sm text-gray-400 hover:text-gray-600 transition-colors whitespace-nowrap text-left">
+              DOCUMENT INTELLIGENCE
+            </button>
+            <button className="flex items-center gap-2 text-sm font-medium text-gray-900 whitespace-nowrap">
+              <span className="size-2 rounded-full bg-violet-500"></span>
+              COLLABORATION
+            </button>
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-gray-900">
+                  Collaboration
+                </h2>
+                <p className="mt-2 text-xl md:text-2xl text-gray-400 font-light">
+                  Work together seamlessly,
+                  <br className="hidden md:block" />
+                  achieve more together
+                </p>
+              </div>
+              <a href="#" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors shrink-0">
+                Learn more <ArrowRight className="size-4" />
+              </a>
+            </div>
+
+            {/* Preview Card */}
+            <div className="rounded-2xl bg-violet-50 p-6 md:p-10 min-h-[300px] md:min-h-[400px] relative overflow-hidden">
+              {/* Team Cards */}
+              <div className="absolute right-6 md:right-10 top-1/4 flex flex-col gap-3">
+                <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-violet-100">
+                  <div className="flex -space-x-2">
+                    <div className="size-8 rounded-full bg-violet-200 border-2 border-white flex items-center justify-center text-xs font-medium text-violet-700">JD</div>
+                    <div className="size-8 rounded-full bg-pink-200 border-2 border-white flex items-center justify-center text-xs font-medium text-pink-700">SK</div>
+                    <div className="size-8 rounded-full bg-blue-200 border-2 border-white flex items-center justify-center text-xs font-medium text-blue-700">MR</div>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Product Team</p>
+                    <p className="text-xs text-violet-500">3 members online</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-violet-100 ml-4">
+                  <MessageSquare className="size-6 text-violet-500" />
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Real-time comments</p>
+                    <p className="text-xs text-violet-500">12 new replies</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-violet-100 ml-2">
+                  <Link className="size-6 text-violet-500" />
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Shared workspace</p>
+                    <p className="text-xs text-violet-500">Connected & synced</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Description */}
+              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 max-w-md">
+                <p className="text-gray-700">
+                  <span className="font-semibold">Unified team collaboration.</span>{" "}
+                  <span className="text-gray-500">Bring teams together with shared workspaces, real-time updates, and seamless communication tools.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom Tabs */}
+            <div className="grid grid-cols-2 md:grid-cols-4 mt-0 border-t border-violet-100">
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-violet-50 transition-colors border-r border-violet-100">
+                Shared workspaces.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-violet-50 transition-colors border-r border-violet-100">
+                Real-time editing.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm text-gray-600 hover:bg-violet-50 transition-colors border-r border-violet-100">
+                Team analytics.
+              </button>
+              <button className="py-4 md:py-5 px-4 text-left text-sm bg-violet-600 text-white">
+                Seamless integrations.
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
     </div>
   )
