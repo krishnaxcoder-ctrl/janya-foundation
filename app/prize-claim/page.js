@@ -3,10 +3,8 @@
 import { useState } from 'react';
 import HeaderPolicy from '../components/HeaderPolicy';
 import Footer from '../components/Footer';
-import PrizeClaimForm from '../components/PrizeClaimForm';
 
 export default function PrizeClaimPage() {
-  const [showForm, setShowForm] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (index) => {
@@ -196,23 +194,16 @@ export default function PrizeClaimPage() {
             </div>
 
             <p className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Congratulations, Champion! You&apos;ve earned it. Submit your documents and receive your well-deserved prize money.
+              The prize claim submission window has now closed. Thank you to all our champions who participated in the Janya Foundation Marathon 2026.
             </p>
 
-            {/* CTA Button */}
-            <button
-              onClick={() => setShowForm(true)}
-              className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-amber-600 via-orange-600 to-rose-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              <svg className="relative w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            {/* Closed Notice */}
+            <div className="inline-flex items-center gap-3 px-10 py-5 bg-gray-100 border-2 border-gray-200 text-gray-700 font-bold text-lg rounded-2xl shadow-md cursor-not-allowed">
+              <svg className="w-6 h-6 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="relative">Submit Your Documents</span>
-              <svg className="relative w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </button>
+              <span>Submission Time Has Ended</span>
+            </div>
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-gray-500">
@@ -435,24 +426,18 @@ export default function PrizeClaimPage() {
           </div>
 
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Ready to Claim Your Prize?
+            Prize Claim Window Has Closed
           </h2>
           <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            You&apos;ve worked hard for this achievement. Submit your documents now and receive your prize money within 60-70 working days.
+            The submission time for prize claims has ended. If you have any queries regarding your claim, please reach out to our support team.
           </p>
 
-          <button
-            onClick={() => setShowForm(true)}
-            className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-orange-600 font-bold text-lg rounded-2xl shadow-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-          >
+          <div className="inline-flex items-center gap-3 px-10 py-5 bg-white/20 backdrop-blur border-2 border-white/40 text-white font-bold text-lg rounded-2xl shadow-xl cursor-not-allowed">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            Submit Documents Now
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
+            Submission Time Has Ended
+          </div>
 
           {/* Contact Info */}
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-white/80">
@@ -474,9 +459,6 @@ export default function PrizeClaimPage() {
       </section>
 
       <Footer />
-
-      {/* Prize Claim Form Modal */}
-      {showForm && <PrizeClaimForm onClose={() => setShowForm(false)} />}
     </div>
   );
 }

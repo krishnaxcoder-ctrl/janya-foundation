@@ -80,7 +80,6 @@ export default function Header({ setShowDonationForm, forceHide = false }) {
     { name: "ABOUT", href: "/about", isLink: true },
     { name: "CAMPAIGNS", href: "/campaigns", isLink: true },
     { name: "PROGRAMS", href: "#programs" },
-    { name: "IMPACT", href: "#impact" },
     { name: "TESTIMONIAL", href: "#testimonial" },
     { name: "GALLERY", href: "/gallery", isLink: true },
     { name: "CONTACT", href: "/contact", isLink: true },
